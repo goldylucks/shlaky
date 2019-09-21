@@ -1,0 +1,18 @@
+{
+  "name": "shlaky",
+  "version": "0.0.0",
+  "description": "shhhhhhhhhhlaky!",
+  "main": "index.js",
+  "repository": "https://github.com/goldylucks/shlaky",
+  "author": "Adam Goldman",
+  "license": "GPL-3.0",
+  "scripts": {
+    "test:integration": "jest --config ./tests/jest.config.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0"
+  }
+}

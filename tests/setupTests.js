@@ -1,5 +1,3 @@
-import config from './config/config'
-
 const localStorageMock = {
   getItem: jest.fn(),
   setItem: jest.fn(),
@@ -7,7 +5,6 @@ const localStorageMock = {
   clear: jest.fn(),
 }
 
-global.mockConfig = config
 global.localStorage = localStorageMock
 
 // selince debug statements
