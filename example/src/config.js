@@ -1,0 +1,1 @@
+/home/goldy/apps/shlaky/config.js

@@ -1,0 +1,78 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.row-title {
+  font-weight: bold;
+  width: 20px;
+  transform: rotate(-90deg);
+  text-align: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.columns {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+}
+
+.column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
+
+.row:nth-child(2n) {
+  background: #eee;
+}
+
+.row:nth-child(2n+1) {
+  /*background: #eee;*/
+}
+
+
+/*.row:nth-child(1) .column {*/
+  /*border-color: blue;*/
+/*}*/
+
+/*.row:nth-child(2) .column {*/
+  /*border-color: grey;*/
+/*}*/
+
+/*.row:nth-child(3) .column {*/
+  /*border-color: red;*/
+/*}*/
+
+/*.row:ntr-child(4) .column {*/
+  /*border-color: black;*/
+/*}*/
+
+/*.row:ntr-child(5) .column {*/
+  /*border-color: orange;*/
+/*}*/
+
+/*.row:ntr-child(6) .column {*/
+  /*border-color: purple;*/
+/*}*/
