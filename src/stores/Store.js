@@ -1,14 +1,12 @@
+/* eslint-disable no-underscore-dangle,import/no-extraneous-dependencies */
 import { computed } from 'mobx'
 
-/* eslint-disable no-underscore-dangle */
+import Base from '../Base'
 
-class Store {
-  constructor({ config, utils, helpers, managers, services }) {
-    this.config = config
-    this.utils = utils
-    this.helpers = helpers
-    this.managers = managers
-    this.services = services
+class Store extends Base {
+  constructor({ config, dependencies, overrides }) {
+    super({ config, dependencies, overrides })
+    Object.assign(this, { config }, dependencies, { overrides })
   }
 
   @computed

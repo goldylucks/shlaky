@@ -2,6 +2,7 @@ const config = {
   domain: 'shlaky.com',
   localStorageKeys: ['task'],
   routes: ['/surprise'],
+  components: [],
   resources: [
     {
       key: 'tasks',

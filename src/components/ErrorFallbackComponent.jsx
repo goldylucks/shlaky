@@ -1,14 +1,9 @@
-/* eslint sort-keys: "error" */
+/* eslint import/no-extraneous-dependencies: 0 */
 
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class ErrorFallbackComponent extends Component {
-  static propTypes = {
-    componentStack: PropTypes.string.isRequired,
-    error: PropTypes.object.isRequired,
-  }
-
   render() {
     const { error, componentStack } = this.props
     return (
@@ -28,4 +23,8 @@ class ErrorFallbackComponent extends Component {
   }
 }
 
+ErrorFallbackComponent.propTypes = {
+  componentStack: PropTypes.string.isRequired,
+  error: PropTypes.object.isRequired,
+}
 export default ErrorFallbackComponent

@@ -1,4 +1,4 @@
-/* eslint sort-keys: "error" */
+/* eslint import/no-extraneous-dependencies: 0 */
 
 import React, { Component } from 'react'
 

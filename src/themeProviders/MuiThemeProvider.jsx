@@ -1,5 +1,7 @@
+/* eslint import/no-extraneous-dependencies: 0 */
+
 import React, { Component } from 'react'
-import { ThemeProviderr } from '@material-ui/styles'
+import { ThemeProvider } from '@material-ui/styles'
 import { createMuiTheme } from '@material-ui/core/styles'
 
 const SPACING = 8
@@ -14,7 +16,7 @@ const theme = createMuiTheme({
 
 class MuiThemeProvider extends Component {
   render() {
-    return <MuiThemeProvider theme={theme} {...this.props} />
+    return <ThemeProvider theme={theme} {...this.props} />
   }
 }
 

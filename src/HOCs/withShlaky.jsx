@@ -1,3 +1,5 @@
+/* eslint import/no-extraneous-dependencies: 0 */
+
 import PropTypes from 'prop-types'
 import { extendObservable } from 'mobx'
 import { observer, inject } from 'mobx-react'
@@ -7,10 +9,6 @@ function withShlaky(WrappedComponent, { styles } = {}) {
   @inject('facade')
   @observer
   class WithShlaky extends WrappedComponent {
-    static propTypes = {
-      facade: PropTypes.object.isRequired,
-    }
-
     constructor(props, context) {
       super(props, context)
       this.attachProperties(props)
@@ -34,6 +32,11 @@ function withShlaky(WrappedComponent, { styles } = {}) {
     render() {
       return WrappedComponent.prototype.render.call(this)
     }
+  }
+
+  // eslint-disable-next-line no-param-reassign
+  WrappedComponent.propTypes = {
+    facade: PropTypes.object.isRequired,
   }
 
   WithShlaky.displayName = `WithShlaky(${getDisplayName(WrappedComponent)})`

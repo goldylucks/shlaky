@@ -1,16 +1,16 @@
-import capitalize from 'lodash/capitalize'
-
 import Manager from './Manager'
 
 const CURRENT_USER = 'currentUser'
 
 class LocalStorageManager extends Manager {
   get = {}
+
   set = {}
+
   remove = {}
-  
-  constructor(dependencies) {
-    super(dependencies)
+
+  constructor({ config, dependencies, overrides }) {
+    super({ config, dependencies, overrides })
     this.setup()
   }
 
@@ -46,10 +46,6 @@ class LocalStorageManager extends Manager {
   remove(key) {
     this.debug(`Removing ${key}`)
     localStorage.removeItem(key)
-  }
-
-  get usersAreDefined() {
-      return !!this.config.resources.find({ key: 'users' })
   }
 
   debug = (...args) => global.console.debug('[Local storage]', ...args)

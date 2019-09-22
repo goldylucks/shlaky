@@ -1,13 +1,14 @@
+/* eslint import/no-extraneous-dependencies: 0 */
+
 import { extendObservable } from 'mobx'
 
-class Facade {
-  constructor({ config, utils, helpers, managers, services, stores }) {
-    this.config = config
-    this.utils = utils
-    this.helpers = helpers
-    this.managers = managers
-    this.services = services
-    this.stores = stores
+import Base from '../Base'
+
+class Facade extends Base {
+  constructor({ config, dependencies, overrides }) {
+    super({ config, dependencies, overrides })
+    Object.assign(this, { config }, dependencies, { overrides })
+    this.setup()
   }
 
   setup() {
@@ -22,25 +23,24 @@ class Facade {
     this.config.resources.forEach(this.setupResource)
   }
 
-  setupResource = ({ name, fields, add }) => {
-    this[name] = Object.assign(this[name] || {}, {
-      populate: () => this.stores[name].populate(),
-      all: () => this.stores[name].all(),
-      one: id => this.stores[name].one(id),
-      destroy: id => this.stores[name].destroy(id),
+  setupResource = ({ key, add }) => {
+    this[key] = Object.assign(this[key] || {}, {
+      populate: () => this.stores[key].populate(),
+      all: () => this.stores[key].all(),
+      one: id => this.stores[key].one(id),
+      destroy: id => this.stores[key].destroy(id),
       add: data =>
-        this.stores[name]
+        this.stores[key]
           .add(this.buildAddData({ data, add }))
           .then(this.routeIfExists(add.onSuccessRoute)),
-      isEmpty: () => this.stores[name].isEmpty(),
-      populateIsLoading: () => this.stores[name].populateIsLoading(),
-      populateIsLoaded: () => this.stores[name].populateIsLoaded(),
-      populateHasError: () => this.stores[name].populateHasError(),
-      addIsLoading: () => this.stores[name].addIsLoading(),
-      addIsLoaded: () => this.stores[name].addIsLoaded(),
-      addHasError: () => this.stores[name].addHasError(),
+      isEmpty: () => this.stores[key].isEmpty(),
+      populateIsLoading: () => this.stores[key].populateIsLoading(),
+      populateIsLoaded: () => this.stores[key].populateIsLoaded(),
+      populateHasError: () => this.stores[key].populateHasError(),
+      addIsLoading: () => this.stores[key].addIsLoading(),
+      addIsLoaded: () => this.stores[key].addIsLoaded(),
+      addHasError: () => this.stores[key].addHasError(),
     })
-    fields.forEach(this.setupResourceField(name))
   }
 
   buildAddData({ data, add }) {
@@ -70,26 +70,6 @@ class Facade {
       logout: () => this.stores.currentUser.logout(),
       refresh: () => this.stores.currentUser.refresh(),
     }
-    this.config.resources
-      .find(resource => resource.name === 'users')
-      .fields.forEach(this.setupResourceField('currentUser'))
-  }
-
-  setupResourceField = resourceKey => ({ name, type }) => {
-    if (name === 'id') {
-      this[resourceKey][name] = {
-        value: () => this.stores[resourceKey].getField(name),
-      }
-      return
-    }
-    this[resourceKey][name] = {
-      value: () => this.stores[resourceKey].getField(name),
-      update: value => this.stores[resourceKey].updateField({ name, value }),
-    }
-    if (type === 'bool') {
-      this[resourceKey][name].toggle = () =>
-        this.stores[resourceKey].toggleField({ name })
-    }
   }
 
   setupRoutes() {
@@ -99,19 +79,19 @@ class Facade {
     this.routing.to = this.routing.to || {}
     this.routing.get = Object.assign(
       this.routing.get,
-      this.services.routing.get
+      this.managers.routing.get
     )
-    this.routing.is = Object.assign(this.routing.is, this.services.routing.is)
-    this.routing.to = Object.assign(this.routing.to, this.services.routing.to)
+    this.routing.is = Object.assign(this.routing.is, this.managers.routing.is)
+    this.routing.to = Object.assign(this.routing.to, this.managers.routing.to)
   }
 
   setupStates() {
-    Object.entries(this.config.states).forEach(this.setupState)
+    this.config.states.forEach(this.setupState)
   }
 
   setupState = ({ key }) => {
     this[key] = {
-      value: () => this.stores[key].value(),
+      get: () => this.stores[key].get(),
       set: value => this.stores[key].set(value),
       is: value => this.stores[key].is(value),
     }
@@ -126,7 +106,7 @@ class Facade {
       [name]: {
         isHidden: () =>
           routesToHide.some(route => {
-            return this.services.routing.is[route]()
+            return this.managers.routing.is[route]()
           }),
       },
     })

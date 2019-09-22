@@ -1,4 +1,4 @@
-import { Util } from '../shlakyjs'
+import Util from './Util'
 
 class EnvUtils extends Util {
   constructor(...args) {

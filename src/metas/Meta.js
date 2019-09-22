@@ -1,12 +1,9 @@
-class Meta {
-  constructor({ config, utils, helpers, managers, services, stores, facade }) {
-    this.config = config
-    this.utils = utils
-    this.helpers = helpers
-    this.managers = managers
-    this.services = services
-    this.stores = stores
-    this.facade = facade
+import Base from '../Base'
+
+class Meta extends Base {
+  constructor({ config, dependencies, overrides }) {
+    super({ config, dependencies, overrides })
+    Object.assign(this, { config }, dependencies, { overrides })
   }
 }
 

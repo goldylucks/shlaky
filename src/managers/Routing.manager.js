@@ -1,3 +1,5 @@
+/* eslint import/no-extraneous-dependencies: 0 */
+
 import { computed } from 'mobx'
 
 import Manager from './Manager'
@@ -9,13 +11,16 @@ class RoutingManager extends Manager {
 
   to = {}
 
-  constructor(dependencies) {
-    super(dependencies)
+  constructor({ config, dependencies, overrides }) {
+    super({ config, dependencies, overrides })
     this.setup()
   }
 
   setup() {
     this.config.routes.forEach(this.setupRoute)
+    if (this.supportsCurrentUser) {
+      this.setupCurrentUser()
+    }
   }
 
   back() {
@@ -37,6 +42,11 @@ class RoutingManager extends Manager {
     this.get.home = () => '/'
     this.is.home = (pathname = this.pathname) => pathname === '/'
     this.to.home = () => this.utils.history.push(this.get.home())
+  }
+
+  setupCurrentUser() {
+    this.setupRoute('/profile')
+    this.setupRoute('/login')
   }
 
   @computed

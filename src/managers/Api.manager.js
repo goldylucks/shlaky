@@ -1,3 +1,5 @@
+/* eslint import/no-extraneous-dependencies: 0 */
+
 import { computed } from 'mobx'
 
 import Manager from './Manager'
@@ -8,9 +10,9 @@ const PUT = 'put'
 const DELETE = 'delete'
 
 class ApiManager extends Manager {
-  constructor(dependencies) {
-    super(dependencies)
-    this.axios = dependencies.axios
+  constructor({ axios, ...args }) {
+    super({ ...args })
+    this.axios = axios
     this.setup()
   }
 
@@ -19,81 +21,55 @@ class ApiManager extends Manager {
   }
 
   setupResource = resource => {
-    if (resource.name === 'currentUser') {
-      this.setupCurrentUser(resource)
-    } else if (typeof resource === 'string') {
-      this.setupShorthandResource(resource)
-    } else {
-      this.setupCustomResource(resource)
+    const { key } = resource
+    this[key] = this[key] || {}
+    this.setupBasicCrud(key)
+    if (key === 'users') {
+      this.setupCurrentUser()
     }
   }
 
-  // TODO current user should get fields from users resource
-  // actually, current user should be set automatically if users resource is listed
-  setupCurrentUser = resource => {
+  setupCurrentUser = () => {
     this.currentUser = this.currentUser || {}
     this.currentUser.refresh = () => {
       const path = this.helpers.endpoints.currentUser.me()
       const url = this.buildUrl(path)
       return this.get(url)
     }
-    this.setupCustomFields(resource)
   }
 
-  setupShorthandResource = resource => {
-    this[resource] = this[resource] || {}
-    this[resource].add = data => {
-      const path = this.helpers.endpoints[resource].add()
+  setupBasicCrud = key => {
+    this[key] = this[key] || {}
+    this[key].add = data => {
+      const path = this.helpers.endpoints[key].add()
       const url = this.buildUrl(path)
       return this.post(url, data)
     }
-    this[resource].all = () => {
-      const path = this.helpers.endpoints[resource].all()
+    this[key].all = () => {
+      const path = this.helpers.endpoints[key].all()
       const url = this.buildUrl(path)
       return this.get(url)
     }
-    this[resource].one = id => {
-      const path = this.helpers.endpoints[resource].one(id)
+    this[key].one = id => {
+      const path = this.helpers.endpoints[key].one(id)
       const url = this.buildUrl(path)
       return this.get(url)
     }
-    this[resource].update = (id, data) => {
-      const path = this.helpers.endpoints[resource].update(id)
+    this[key].update = (id, data) => {
+      const path = this.helpers.endpoints[key].update(id)
       const url = this.buildUrl(path)
       return this.put(url, data)
     }
-    this[resource].destroy = id => {
-      const path = this.helpers.endpoints[resource].destroy(id)
+    this[key].destroy = id => {
+      const path = this.helpers.endpoints[key].destroy(id)
       const url = this.buildUrl(path)
       return this.delete(url)
     }
   }
 
-  setupCustomResource = resource => {
-    const { name } = resource
-    this[name] = this[name] || {}
-    this.setupShorthandResource(name)
-    this.setupCustomFields(resource)
-  }
-
-  setupCustomFields = resource => {
-    const { name } = resource
-    this[name] = this[name] || {}
-    resource.fields.forEach(({ name: field }) => {
-      this[name][
-        `set${field[0].toUpperCase() + field.substr(1)}`
-      ] = newValue => {
-        const path = this.helpers.endpoints[name].update()
-        const url = this.buildUrl(path)
-        const data = { [field]: newValue }
-        return this.put(url, data)
-      }
-    })
-  }
-
   @computed
   get baseUrl() {
-    return this.config.baseUrl
+    return '/api'
   }
 
   /* ************************************* /
@@ -157,7 +133,7 @@ class ApiManager extends Manager {
   }
 
   formatErrorResponse = error => ({
-    errorMessage: error.response.data.messages.join(', '),
+    errorMessage: error.message,
     data: {}, // make it safe for consumers to destructure the response before knowing if it's successful
   })
 

@@ -1,8 +1,9 @@
-class Manager {
-  constructor({ config, utils, helpers }) {
-    this.config = config
-    this.utils = utils
-    this.helpers = helpers
+import Base from '../Base'
+
+class Manager extends Base {
+  constructor({ config, dependencies, overrides }) {
+    super({ config, dependencies, overrides })
+    Object.assign(this, { config }, dependencies, { overrides })
   }
 }
 

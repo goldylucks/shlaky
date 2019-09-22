@@ -1,3 +1,5 @@
+/* eslint import/no-extraneous-dependencies: 0 */
+
 import { observable, action, extendObservable } from 'mobx'
 
 import Store from './Store'

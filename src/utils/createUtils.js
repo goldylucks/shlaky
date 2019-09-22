@@ -2,13 +2,14 @@ import historyUtil from './history.util'
 import EnvUtil from './Env.util'
 import MiscUtil from './Misc.util'
 
-const createUtils = dependencies => {
-  const env = new EnvUtil(dependencies)
-  const misc = new MiscUtil(dependencies)
+const createUtils = ({ config, dependencies, overrides = {} }) => {
+  const env = new EnvUtil({ config, dependencies, overrides })
+  const misc = new MiscUtil({ config, dependencies, overrides })
   return {
     history: historyUtil,
     misc,
     env,
+    ...overrides,
   }
 }
 

@@ -1,7 +1,9 @@
-class Helper {
-  constructor({ config, utils }) {
-    this.config = config
-    this.utils = utils
+import Base from '../Base'
+
+class Helper extends Base {
+  constructor({ config, dependencies, overrides }) {
+    super({ config, dependencies, overrides })
+    Object.assign(this, { config }, dependencies, { overrides })
   }
 }
 

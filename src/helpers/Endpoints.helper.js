@@ -1,8 +1,8 @@
 import Helper from './Helper'
 
 class EndpointsHelper extends Helper {
-  constructor(dependencies) {
-    super(dependencies)
+  constructor(...args) {
+    super(...args)
     this.setup()
   }
 
@@ -10,13 +10,13 @@ class EndpointsHelper extends Helper {
     this.config.resources.forEach(this.setupResource)
   }
 
-  setupResource = ({ name }) => {
-    this[name] = Object.assign(this[name] || {}, {
-      add: () => `/${name}`,
-      all: () => `/${name}`,
-      one: id => `/${name}/${id}`,
-      update: id => `/${name}/${id}`,
-      destroy: id => `/${name}/${id}`,
+  setupResource = ({ key }) => {
+    this[key] = Object.assign(this[key] || {}, {
+      add: () => `/${key}`,
+      all: () => `/${key}`,
+      one: id => `/${key}/${id}`,
+      update: id => `/${key}/${id}`,
+      destroy: id => `/${key}/${id}`,
     })
   }
 }
