@@ -9,7 +9,8 @@
   "scripts": {
     "lint": "eslint src --ext .js,jsx",
     "prettier": "prettier src/**/*.js -c",
-    "test:integration": "jest --config ./tests/jest.config.js integration.test.js --watch"
+    "test:integration": "jest --config ./tests/jest.config.js integration.test.js --watch",
+    "test:integration:once": "yarn test:integration --watchAll=false"
   },
   "lint-staged": {
     "src/**/*.{js,jsx}": [
@@ -20,7 +21,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "yarn lint && yarn prettier && yarn test:integration"
+      "pre-push": "yarn lint && yarn prettier && yarn test:integration:once"
     }
   },
   "devDependencies": {

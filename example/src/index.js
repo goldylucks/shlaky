@@ -1,4 +1,6 @@
-import shlaky from './shlaky'
+import { start } from './shlaky'
 import config from './config'
+import App from './App'
 
-shlaky.start({ config })
+const overrides = { App }
+start({ config, overrides })
