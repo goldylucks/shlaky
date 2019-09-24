@@ -2,6 +2,7 @@ module.exports = {
   extends: ['react-app', 'airbnb', 'prettier'],
   plugins: ['prettier', 'import'],
   rules: {
+    'no-underscore-dangle': 0,
     'prettier/prettier': 'error',
     'react/forbid-prop-types': 0,
     'react/destructuring-assignment': 0,
