@@ -39,6 +39,18 @@ class CurrentUserStore extends Store {
     }
   }
 
+  async refresh() {
+    const {
+      data: { user },
+      error,
+    } = await this.managers.api.currentUser.refresh()
+    if (error) {
+      global.console.error('[currentUser.refresh]', error)
+      return
+    }
+    this.managers.localStorage.set.currentUser(user)
+  }
+
   @action.bound
   async create(user) {
     this.processingCreateState = LOADING
@@ -105,7 +117,7 @@ class CurrentUserStore extends Store {
   }
 
   getPristineUser() {
-    return this.usersFields.reduce(
+    return this.userFields.reduce(
       (acc, { fieldKey, type }) => ({
         ...acc,
         [fieldKey]: this.getInitialValueForType(type),
@@ -114,13 +126,8 @@ class CurrentUserStore extends Store {
     )
   }
 
-  get usersFields() {
-    return this.config.resources.find(resource => resource.key === 'users')
-      .fields
-  }
-
   getInitialValueForType(type) {
-    if (type.match(/string|enum|password)/) {
+    if (type.match(/string|password|enum/)) {
       return ''
     }
     if (type === 'number') {
