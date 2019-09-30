@@ -15,9 +15,8 @@ class BootingMeta extends Meta {
     const user = this.stores.currentUser.hydrateUserFromLocalStorage()
     if (user) {
       this.managers.api.setCurrentUser(user)
+      this.stores.currentUser.refresh()
       this.handleRedirectUser()
-    } else {
-      this.handleRedirectGuest()
     }
   }
 

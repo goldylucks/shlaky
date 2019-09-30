@@ -26,6 +26,7 @@ class ApiManager extends Manager {
     this.setupBasicCrud(key)
     if (key === 'users') {
       this.setupCurrentUser()
+      this.setupAuth()
     }
   }
 
@@ -35,6 +36,26 @@ class ApiManager extends Manager {
       const path = this.helpers.endpoints.currentUser.me()
       const url = this.buildUrl(path)
       return this.get(url)
+    }
+  }
+
+  setupAuth() {
+    this.auth = {
+      signup: data => {
+        const path = this.helpers.endpoints.auth.signup()
+        const url = this.buildUrl(path)
+        return this.post(url, data)
+      },
+      login: data => {
+        const path = this.helpers.endpoints.auth.login()
+        const url = this.buildUrl(path)
+        return this.post(url, data)
+      },
+      forgotPassword: data => {
+        const path = this.helpers.endpoints.auth.forgotPassword()
+        const url = this.buildUrl(path)
+        return this.post(url, data)
+      },
     }
   }
 
@@ -125,15 +146,16 @@ class ApiManager extends Manager {
   }
 
   get headers() {
-    const headers = new Headers()
+    const headers = {}
     if (this.currentUserToken) {
-      headers.append('Authorization', `Bearer ${this.currentUserToken}`)
+      headers.Authorization = `Bearer ${this.currentUserToken}`
     }
     return headers
   }
 
   formatErrorResponse = error => ({
     errorMessage: error.message,
+    error,
     data: {}, // make it safe for consumers to destructure the response before knowing if it's successful
   })
 

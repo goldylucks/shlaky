@@ -2,16 +2,18 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Provider, observer } from 'mobx-react'
+import { observer } from 'mobx-react'
+
+import FacadeContext from '../facade/facadeContext'
 
 @observer
 class Root extends React.Component {
   render() {
     const { facade, facadeInstaceId, App } = this.props
     return (
-      <Provider facade={facade} key={facadeInstaceId}>
-        {App}
-      </Provider>
+      <FacadeContext.Provider value={facade} facadeInstaceId={facadeInstaceId}>
+        <App />
+      </FacadeContext.Provider>
     )
   }
 }

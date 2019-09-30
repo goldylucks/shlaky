@@ -1,43 +1,50 @@
 /* eslint import/no-extraneous-dependencies: 0 */
 
-import PropTypes from 'prop-types'
 import { extendObservable } from 'mobx'
-import { observer, inject } from 'mobx-react'
+import { observer } from 'mobx-react'
 import withStyles from '@material-ui/styles/withStyles'
 
+import FacadeContext from '../facade/facadeContext'
+
 function withShlaky(WrappedComponent, { styles } = {}) {
-  @inject('facade')
   @observer
   class WithShlaky extends WrappedComponent {
     constructor(props, context) {
       super(props, context)
-      this.attachProperties(props)
+      this.attachProperties(props, context)
     }
 
-    attachProperties(props) {
+    attachProperties(props, context) {
       if (WrappedComponent.prototype.facade) {
         return
       }
-      extendObservable(WrappedComponent.prototype, {
-        facade: props.facade,
-        auth: props.facade.auth,
-        currentUser: props.facade.currentUser,
-        scenes: props.facade.scenes,
-        routing: props.facade.routing,
-        routes: props.facade.routes,
-        constants: props.facade.constants,
+      const facade = context.value
+      const properties = {
+        facade,
+        routing: facade.routing,
+        constants: facade.constants,
+      }
+      if (facade.supportsCurrentUser) {
+        properties.auth = facade.auth
+        properties.currentUser = facade.currentUser
+        properties.users = facade.users
+      }
+
+      facade.config.resources.forEach(({ key }) => {
+        properties[key] = facade[key]
       })
+      facade.config.states.forEach(({ key }) => {
+        properties[key] = facade[key]
+      })
+
+      extendObservable(WrappedComponent.prototype, properties)
     }
 
     render() {
       return WrappedComponent.prototype.render.call(this)
     }
   }
-
-  // eslint-disable-next-line no-param-reassign
-  WrappedComponent.propTypes = {
-    facade: PropTypes.object.isRequired,
-  }
+  WithShlaky.contextType = FacadeContext
 
   WithShlaky.displayName = `WithShlaky(${getDisplayName(WrappedComponent)})`
 

@@ -15,20 +15,24 @@ class Facade extends Base {
     this.setupRoutes()
     this.setupStates()
     this.setupResources()
-    this.setupCurrentUser()
     this.setupComponentsToHide()
+    if (this.supportsCurrentUser) {
+      this.setupCurrentUser()
+      this.setupAuth()
+    }
   }
 
   setupResources() {
     this.config.resources.forEach(this.setupResource)
   }
 
-  setupResource = ({ key, add }) => {
+  setupResource = ({ key, add = {} }) => {
     this[key] = Object.assign(this[key] || {}, {
       populate: () => this.stores[key].populate(),
       all: () => this.stores[key].all(),
       one: id => this.stores[key].one(id),
       destroy: id => this.stores[key].destroy(id),
+      update: (id, data) => this.stores[key].update(id, data),
       add: data =>
         this.stores[key]
           .add(this.buildAddData({ data, add }))
@@ -44,6 +48,9 @@ class Facade extends Base {
   }
 
   buildAddData({ data, add }) {
+    if (!add.data) {
+      return data
+    }
     return add.data.reduce(
       (acc, { name, value }) => ({
         ...acc,
@@ -70,6 +77,17 @@ class Facade extends Base {
       logout: () => this.stores.currentUser.logout(),
       refresh: () => this.stores.currentUser.refresh(),
     }
+  }
+
+  setupAuth() {
+    extendObservable(this, {
+      auth: {
+        ...this.generateAuthFields(),
+        signup: () => this.stores.auth.signup(),
+        login: () => this.stores.auth.login(),
+        forgotPassword: () => this.stores.auth.login(),
+      },
+    })
   }
 
   setupRoutes() {
@@ -111,6 +129,21 @@ class Facade extends Base {
       },
     })
   }
+
+  generateAuthFields = () =>
+    this.userFields.reduce(
+      (acc, { fieldKey }) => ({
+        get: {
+          ...acc.get,
+          [fieldKey]: () => this.stores.auth.get(fieldKey),
+        },
+        set: {
+          ...acc.set,
+          [fieldKey]: evt => this.stores.auth.set(fieldKey, evt.target.value),
+        },
+      }),
+      { get: {}, set: {} }
+    )
 }
 
 export default Facade

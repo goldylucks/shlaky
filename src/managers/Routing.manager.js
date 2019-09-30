@@ -17,6 +17,9 @@ class RoutingManager extends Manager {
   }
 
   setup() {
+    this.setupHomeRoute()
+    this.setupResourcesRoutes()
+    this.setupStatesRoutes()
     this.config.routes.forEach(this.setupRoute)
     if (this.supportsCurrentUser) {
       this.setupCurrentUser()
@@ -27,15 +30,18 @@ class RoutingManager extends Manager {
     this.utils.history.goBack()
   }
 
+  setupResourcesRoutes() {
+    this.config.resources.map(resource => resource.key).forEach(this.setupRoute)
+  }
+
+  setupStatesRoutes() {
+    this.config.states.map(state => state.key).forEach(this.setupRoute)
+  }
+
   setupRoute = route => {
-    if (route === '/') {
-      this.setupHomeRoute()
-      return
-    }
-    const routeName = route.substr(1)
-    this.get[routeName] = () => route
-    this.is[routeName] = (pathname = this.pathname) => pathname === route
-    this.to[routeName] = () => this.utils.history.push(this.get[routeName]())
+    this.get[route] = () => `/${route}`
+    this.is[route] = (pathname = this.pathname) => pathname === `/${route}`
+    this.to[route] = () => this.utils.history.push(this.get[route]())
   }
 
   setupHomeRoute() {
@@ -45,8 +51,11 @@ class RoutingManager extends Manager {
   }
 
   setupCurrentUser() {
-    this.setupRoute('/profile')
-    this.setupRoute('/login')
+    this.setupRoute('profile')
+    this.setupRoute('login')
+    this.setupRoute('signup')
+    this.setupRoute('auth')
+    this.setupRoute('forgotPassword')
   }
 
   @computed

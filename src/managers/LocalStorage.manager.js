@@ -22,17 +22,17 @@ class LocalStorageManager extends Manager {
   }
 
   setupKey = key => {
-    this.set[key] = data => this.set(key, data)
-    this.get[key] = () => this.get(key)
-    this.remove[key] = () => this.remove(key)
+    this.set[key] = data => this._set(key, data)
+    this.get[key] = () => this._get(key)
+    this.remove[key] = () => this._remove(key)
   }
 
-  set(key, value) {
+  _set(key, value) {
     this.debug(`Setting ${key}`, value)
     return localStorage.setItem(key, JSON.stringify(value))
   }
 
-  get(key) {
+  _get(key) {
     const unparsed = localStorage.getItem(key)
     try {
       const parsed = JSON.parse(unparsed)
@@ -43,7 +43,7 @@ class LocalStorageManager extends Manager {
     }
   }
 
-  remove(key) {
+  _remove(key) {
     this.debug(`Removing ${key}`)
     localStorage.removeItem(key)
   }

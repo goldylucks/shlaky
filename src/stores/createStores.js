@@ -1,5 +1,6 @@
 /* eslint max-classes-per-file: 0 */
 
+import AuthStore from './Auth.store'
 import CurrentUserStore from './CurrentUser.store'
 import ResourceStore from './Resource.store'
 import StateStore from './State.store'

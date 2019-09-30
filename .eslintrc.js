@@ -21,6 +21,7 @@ module.exports = {
     'jsx-a11y/anchor-has-content': 0,
     'import/order': [2, { 'newlines-between': 'always' }],
     'import/no-unresolved': 2,
+    'no-underscore-dangle': 0,
     'max-params': [2, { max: 2 }],
     'lines-between-class-members': [2, 'always'],
     'object-curly-spacing': [2, 'always'],

@@ -1,5 +1,6 @@
-/* eslint-disable no-underscore-dangle,import/no-extraneous-dependencies */
+/* eslint-disable import/no-extraneous-dependencies */
 import { observable, action } from 'mobx'
+import pluralize from 'pluralize'
 
 import Store from './Store'
 
@@ -33,9 +34,10 @@ class ResourceStore extends Store {
       return error
     }
     this.populateState = LOADED
-    this.debug(data)
-    this._all = data
-    return data
+    const list = data[this.listKey]
+    this.debug(list)
+    this._all = list
+    return list
   })
 
   add = action(this.addActionName, async toAdd => {
@@ -50,21 +52,24 @@ class ResourceStore extends Store {
     this.addError = ''
     // optimistic update
     this._all.push(optimisticAdd)
-    const { data, error } = await this.services.resource[this._name].add(toAdd)
-    if (error) {
+    const { data, errorMessage } = await this.services.resource[this._name].add(
+      toAdd
+    )
+    if (errorMessage) {
       // revert optimistic update
       this._all = this._all.filter(item => item.optimisticId !== optimisticId)
       this.addState = ERROR
-      this.addError = error
+      this.addError = errorMessage
       return
     }
-    this.debug('Added', data)
-    // replace optimistic update item with server item
-    this._all = this._all.map(item =>
-      item.optimisticId === optimisticId ? data : item
+    const item = data[this.itemKey]
+    this.debug('Added', item)
+    // replace optimistic update item with server response
+    this._all = this._all.map(_item =>
+      _item.optimisticId === optimisticId ? data[this.itemKey] : _item
     )
     this.addState = LOADED
-    return data
+    return item
   })
 
   all = () => this._all
@@ -89,6 +94,14 @@ class ResourceStore extends Store {
 
   get addActionName() {
     return `${this._displayName} add`
+  }
+
+  get listKey() {
+    return this._name
+  }
+
+  get itemKey() {
+    return pluralize.singular(this.listKey)
   }
 }
 

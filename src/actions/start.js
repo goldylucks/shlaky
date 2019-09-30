@@ -1,7 +1,7 @@
 import setup from './setup'
 
-const start = ({ config, dependencies, overrides }) => {
-  const { metas, facade, utils } = setup({ config, dependencies, overrides })
+const start = (...args) => {
+  const { metas, facade, utils } = setup(...args)
   metas.booting.boot().then(metas.rendering.render)
 
   if (utils.env.isDev()) {
