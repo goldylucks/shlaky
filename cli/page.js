@@ -1,32 +1,29 @@
 const fs = require('fs')
 const path = require('path')
 
-const name = 'Auth'
-const destination = path.join(
-  process.cwd(),
-  'src',
-  'pages',
-  `${name}.page.jsx`
-)
-
 run()
 
 function run() {
-  const html = generateHtml()
-  writeFile(html)
-  logSuccess()
+  const pages = process.argv.slice(2).map(capitalize)
+  pages.forEach(generatePage)
 }
 
-function generateHtml() {
+function generatePage(PageName) {
+  const html = generateHtml(PageName)
+  writeFile(html, PageName)
+  logSuccess(PageName)
+}
+
+function generateHtml(PageName) {
   return `import React from 'react'
 import PropTypes from 'prop-types'
 import { withShlaky } from 'shlaky'
 
-class ${name}Page extends React.Component {
+class ${PageName}Page extends React.Component {
   render() {
     return (
       <div className={classes.root}>
-        ${name} Page!
+        ${PageName} Page!
       </div>
     )
   }
@@ -36,17 +33,25 @@ const styles = () => ({
   root: {},
 })
 
-${name}Page.propTypes = {
+${PageName}Page.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default withShlaky(${name}Page, { styles })`
+export default withShlaky(${PageName}Page, { styles })`
 }
 
-function writeFile(html) {
-  fs.writeFileSync(destination, html)
+function writeFile(html, PageName) {
+  fs.writeFileSync(destination(PageName), html)
 }
 
-function logSuccess() {
-  global.console.log(`Successfully written to\n${destination}`)
+function destination(PageName) {
+  return path.join(process.cwd(), 'src', 'pages', `${PageName}.page.jsx`)
+}
+
+function logSuccess(PageName) {
+  global.console.log(destination(PageName))
+}
+
+function capitalize(page) {
+  return page[0].toUpperCase() + page.substr(1)
 }
