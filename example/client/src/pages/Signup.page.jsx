@@ -1,18 +1,19 @@
 
 import React from 'react'
-import { Link } from 'react-router-dom'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import TextField from '@material-ui/core/TextField'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
+import Link from '@material-ui/core/Link'
 import Grid from '@material-ui/core/Grid'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
+import withStyles from '@material-ui/styles/withStyles'
 
-import { withShlaky } from '../shlaky'
+import { withShlaky } from 'shlaky'
 
 class SignupPage extends React.Component {
   render() {
@@ -31,8 +32,8 @@ class SignupPage extends React.Component {
           <TextField
             variant="outlined"
             margin="normal"
-            value={this.auth.get.email()}
-            onChange={this.auth.set.email}
+            value={this.auth.emailInput}
+            onChange={this.auth.onEmailInputChange}
             required
             fullWidth
             id="email"
@@ -47,8 +48,8 @@ class SignupPage extends React.Component {
             required
             fullWidth
             name="password"
-            value={this.auth.get.password()}
-            onChange={this.auth.set.password}
+            value={this.auth.password}
+            onChange={this.auth.onPasswordInputChange}
             label="Password"
             type="password"
             id="password"
@@ -109,4 +110,4 @@ const styles = theme => ({
   },
 })
 
-export default withShlaky(SignupPage, { styles })
+export default withStyles(styles)(withShlaky(SignupPage))

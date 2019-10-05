@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { start } from './shlaky'
+import { start } from 'shlaky'
 import config from './config'
 import App from './App'
 

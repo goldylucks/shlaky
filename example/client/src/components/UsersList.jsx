@@ -7,7 +7,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-import { withShlaky } from '../shlaky'
+import { withShlaky } from 'shlaky'
 
 class UsersList extends React.Component {
   render() {

@@ -1,0 +1,380 @@
+
+{
+  "header": {
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20191005.103611.32565.0.001.json",
+    "dumpEventTime": "2019-10-05T10:36:11Z",
+    "dumpEventTimeStamp": "1570260971295",
+    "processId": 32565,
+    "cwd": "/home/goldy/apps/shlaky/example/client",
+    "commandLine": [
+      "/home/goldy/.nvm/versions/node/v12.0.0/bin/node",
+      "/home/goldy/apps/shlaky/example/client/node_modules/react-app-rewired/scripts/start.js"
+    ],
+    "nodejsVersion": "v12.0.0",
+    "glibcVersionRuntime": "2.27",
+    "glibcVersionCompiler": "2.17",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "linux",
+    "componentVersions": {
+      "node": "12.0.0",
+      "v8": "7.4.288.21-node.16",
+      "uv": "1.28.0",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.38.0",
+      "napi": "4",
+      "llhttp": "1.1.1",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1b",
+      "cldr": "34.0",
+      "icu": "63.1",
+      "tz": "2018e",
+      "unicode": "11.0"
+    },
+    "release": {
+      "name": "node",
+      "headersUrl": "https://nodejs.org/download/release/v12.0.0/node-v12.0.0-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.0.0/node-v12.0.0.tar.gz"
+    },
+    "osName": "Linux",
+    "osRelease": "4.15.0-51-generic",
+    "osVersion": "#55-Ubuntu SMP Wed May 15 14:27:21 UTC 2019",
+    "osMachine": "x86_64",
+    "host": "goldy"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x0000000000a94fed",
+      "symbol": "report::TriggerNodeReport(v8::Isolate*, node::Environment*, char const*, char const*, std::string const&, v8::Local<v8::String>) [/home/goldy/.nvm/versions/node/v12.0.0/bin/node]"
+    },
+    {
+      "pc": "0x000000000097b219",
+      "symbol": "node::OnFatalError(char const*, char const*) [/home/goldy/.nvm/versions/node/v12.0.0/bin/node]"
+    },
+    {
+      "pc": "0x0000000000af2d0e",
+      "symbol": "v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [/home/goldy/.nvm/versions/node/v12.0.0/bin/node]"
+    },
+    {
+      "pc": "0x0000000000af3089",
+      "symbol": "v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [/home/goldy/.nvm/versions/node/v12.0.0/bin/node]"
+    },
+    {
+      "pc": "0x0000000000efe235",
+      "symbol": " [/home/goldy/.nvm/versions/node/v12.0.0/bin/node]"
+    },
+    {
+      "pc": "0x0000000000f08b9b",
+      "symbol": "v8::internal::Heap::PerformGarbageCollection(v8::internal::GarbageCollector, v8::GCCallbackFlags) [/home/goldy/.nvm/versions/node/v12.0.0/bin/node]"
+    },
+    {
+      "pc": "0x0000000000f098b7",
+      "symbol": "v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [/home/goldy/.nvm/versions/node/v12.0.0/bin/node]"
+    },
+    {
+      "pc": "0x0000000000f0c355",
+      "symbol": "v8::internal::Heap::AllocateRawWithRetryOrFail(int, v8::internal::AllocationType, v8::internal::AllocationAlignment) [/home/goldy/.nvm/versions/node/v12.0.0/bin/node]"
+    },
+    {
+      "pc": "0x0000000000ed7380",
+      "symbol": "v8::internal::Factory::NewFillerObject(int, bool, v8::internal::AllocationSpace) [/home/goldy/.nvm/versions/node/v12.0.0/bin/node]"
+    },
+    {
+      "pc": "0x00000000011a917e",
+      "symbol": "v8::internal::Runtime_AllocateInNewSpace(int, unsigned long*, v8::internal::Isolate*) [/home/goldy/.nvm/versions/node/v12.0.0/bin/node]"
+    },
+    {
+      "pc": "0x0000000001a5c1a2",
+      "symbol": " [/home/goldy/.nvm/versions/node/v12.0.0/bin/node]"
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 2160963584,
+    "totalCommittedMemory": 2155962240,
+    "usedMemory": 1773454224,
+    "availableMemory": 75040072,
+    "memoryLimit": 2197815296,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 524288,
+        "committedMemory": 32024,
+        "capacity": 523976,
+        "used": 31712,
+        "available": 492264
+      },
+      "new_space": {
+        "memorySize": 33554432,
+        "committedMemory": 32506256,
+        "capacity": 16767232,
+        "used": 1150008,
+        "available": 15617224
+      },
+      "old_space": {
+        "memorySize": 2020728832,
+        "committedMemory": 2017463736,
+        "capacity": 1673467872,
+        "used": 1668156232,
+        "available": 5311640
+      },
+      "code_space": {
+        "memorySize": 2260992,
+        "committedMemory": 2065600,
+        "capacity": 1519136,
+        "used": 1519136,
+        "available": 0
+      },
+      "map_space": {
+        "memorySize": 3674112,
+        "committedMemory": 3673696,
+        "capacity": 2713040,
+        "used": 2713040,
+        "available": 0
+      },
+      "large_object_space": {
+        "memorySize": 99598336,
+        "committedMemory": 99598336,
+        "capacity": 99333536,
+        "used": 99333536,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 622592,
+        "committedMemory": 622592,
+        "capacity": 550560,
+        "used": 550560,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 16767232,
+        "used": 0,
+        "available": 16767232
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 163.177,
+    "kernelCpuSeconds": 20.3492,
+    "cpuConsumptionPercent": 235.29,
+    "maxRss": 2421751808,
+    "pageFaults": {
+      "IORequired": 0,
+      "IONotRequired": 762214
+    },
+    "fsActivity": {
+      "reads": 0,
+      "writes": 32
+    }
+  },
+  "uvthreadResourceUsage": {
+    "userCpuSeconds": 72.1783,
+    "kernelCpuSeconds": 4.59041,
+    "cpuConsumptionPercent": 98.4214,
+    "fsActivity": {
+      "reads": 0,
+      "writes": 0
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "HISTFILESIZE": "100000",
+    "npm_package_dependencies__material_ui_icons": "^4.4.3",
+    "USER": "goldy",
+    "LC_TIME": "en_US.UTF-8",
+    "npm_config_version_commit_hooks": "true",
+    "npm_config_user_agent": "yarn/1.19.0 npm/? node/v12.0.0 linux x64",
+    "XDG_SEAT": "seat0",
+    "npm_package_dependencies__material_ui_core": "^4.4.3",
+    "npm_config_bin_links": "true",
+    "XDG_SESSION_TYPE": "wayland",
+    "npm_node_execpath": "/home/goldy/.nvm/versions/node/v12.0.0/bin/node",
+    "npm_package_scripts_prebuild": "rm -rf build",
+    "npm_config_init_version": "1.0.0",
+    "SHLVL": "1",
+    "GREP_COLOR": "1;33",
+    "HOME": "/home/goldy",
+    "OLDPWD": "/home/goldy/apps/shlaky/example",
+    "TERMINFO": "/home/goldy/.local/kitty.app/lib/kitty/terminfo",
+    "LESS": "-R",
+    "npm_package_browserslist_production_0": ">0.2%",
+    "PORT": "3001",
+    "DESKTOP_SESSION": "ubuntu-wayland",
+    "NVM_BIN": "/home/goldy/.nvm/versions/node/v12.0.0/bin",
+    "npm_package_browserslist_production_1": "not dead",
+    "GIO_LAUNCHED_DESKTOP_FILE": "/home/goldy/.config/autostart/kitty.desktop",
+    "ZSH": "/home/goldy/.oh-my-zsh",
+    "LSCOLORS": "exfxcxdxbxegedabagacad",
+    "npm_package_devDependencies_webpack_notifier": "^1.8.0",
+    "npm_package_browserslist_production_2": "not op_mini all",
+    "npm_config_init_license": "MIT",
+    "GNOME_SHELL_SESSION_MODE": "ubuntu",
+    "PAGER": "less",
+    "YARN_WRAP_OUTPUT": "false",
+    "npm_config_version_tag_prefix": "v",
+    "LC_MONETARY": "en_US.UTF-8",
+    "LC_CTYPE": "en_US.UTF-8",
+    "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+    "GIO_LAUNCHED_DESKTOP_FILE_PID": "1890",
+    "COLORTERM": "truecolor",
+    "npm_package_description": "In the project directory, you can run:",
+    "npm_package_dependencies_react_scripts": "3.1.2",
+    "npm_package_dependencies_react_error_boundary": "^1.2.5",
+    "NVM_DIR": "/home/goldy/.nvm",
+    "npm_package_readmeFilename": "README.md",
+    "WAYLAND_DISPLAY": "wayland-0",
+    "LOGNAME": "goldy",
+    "_": "/usr/bin/yarn",
+    "DESKTOP_AUTOSTART_ID": "10d64dc592adc173f1157020701131976600000012960023",
+    "WINDOWID": "52428814",
+    "npm_package_private": "true",
+    "npm_config_registry": "https://registry.yarnpkg.com",
+    "USERNAME": "goldy",
+    "XDG_SESSION_ID": "1",
+    "TERM": "xterm-kitty",
+    "GNOME_DESKTOP_SESSION_ID": "this-is-deprecated",
+    "AUTOJUMP_ERROR_PATH": "/home/goldy/.local/share/autojump/errors.log",
+    "RBENV_SHELL": "zsh",
+    "npm_package_scripts_start": "PORT=3001 REACT_APP_ENV=development react-app-rewired start ",
+    "npm_config_ignore_scripts": "",
+    "HISTCONTROL": "ignorespace:ignoredups",
+    "npm_package_browserslist_development_0": "last 1 chrome version",
+    "npm_package_dependencies_axios": "^0.19.0",
+    "npm_package_dependencies__material_ui_styles": "^4.4.3",
+    "PATH": "/tmp/yarn--1570260893141-0.5010501837492087:/home/goldy/apps/shlaky/example/client/node_modules/.bin:/home/goldy/.config/yarn/link/node_modules/.bin:/home/goldy/.nvm/versions/node/v12.0.0/libexec/lib/node_modules/npm/bin/node-gyp-bin:/home/goldy/.nvm/versions/node/v12.0.0/lib/node_modules/npm/bin/node-gyp-bin:/home/goldy/.nvm/versions/node/v12.0.0/bin/node_modules/npm/bin/node-gyp-bin:/home/goldy/.rbenv/shims:/home/goldy/.rbenv/plugins/ruby-build/bin:/home/goldy/.rbenv/bin:/home/goldy/scripts:/home/goldy/programs/git-scripts:/home/goldy/.yarn/bin:/home/goldy/.rbenv/plugins/ruby-build/bin:/home/goldy/.rbenv/bin:/home/goldy/scripts:/home/goldy/programs/git-scripts:/home/goldy/.yarn/bin:/home/goldy/.nvm/versions/node/v12.0.0/bin:/home/goldy/bin:/usr/local/bin:/home/goldy/.local/kitty.app/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/goldy/.fzf/bin",
+    "NODE": "/home/goldy/.nvm/versions/node/v12.0.0/bin/node",
+    "PAPERSIZE": "letter",
+    "SESSION_MANAGER": "local/goldy:@/tmp/.ICE-unix/1296,unix/goldy:/tmp/.ICE-unix/1296",
+    "npm_package_browserslist_development_1": "last 1 firefox version",
+    "npm_package_name": "example",
+    "LC_ADDRESS": "en_US.UTF-8",
+    "XDG_RUNTIME_DIR": "/run/user/1000",
+    "XDG_MENU_PREFIX": "gnome-",
+    "npm_package_browserslist_development_2": "last 1 safari version",
+    "DISPLAY": ":0",
+    "SSL_CERT_DIR": "/etc/ssl/certs",
+    "npm_package_scripts_eject": "react-scripts eject",
+    "npm_package_dependencies__hot_loader_react_dom": "^16.9.0",
+    "LANG": "en_US.UTF-8",
+    "XDG_CURRENT_DESKTOP": "ubuntu:GNOME",
+    "LC_TELEPHONE": "en_US.UTF-8",
+    "HISTSIZE": "500",
+    "npm_package_dependencies_react_dom": "^16.9.0",
+    "XDG_SESSION_DESKTOP": "ubuntu-wayland",
+    "XMODIFIERS": "@im=ibus",
+    "LS_COLORS": "di=34;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:",
+    "npm_lifecycle_script": "PORT=3001 REACT_APP_ENV=development react-app-rewired start ",
+    "npm_package_dependencies_mobx_react": "^6.1.3",
+    "SSH_AUTH_SOCK": "/run/user/1000/keyring/ssh",
+    "PGPASS": "adam",
+    "ROOT_DOMAIN": "http://localhost:3000",
+    "npm_package_scripts_test": "react-app-rewired test",
+    "npm_package_proxy": "http://localhost:3000",
+    "npm_config_version_git_message": "v%s",
+    "REACT_APP_ENV": "development",
+    "LC_NAME": "en_US.UTF-8",
+    "SHELL": "/usr/bin/zsh",
+    "YDIFF_OPTIONS": "-s -w0 --wrap",
+    "npm_lifecycle_event": "start",
+    "npm_package_dependencies_pluralize": "^8.0.0",
+    "npm_package_dependencies_mobx": "^5.13.0",
+    "npm_package_version": "0.1.0",
+    "GDMSESSION": "ubuntu-wayland",
+    "npm_config_argv": "{\"remain\":[],\"cooked\":[\"run\",\"start\"],\"original\":[\"start\"]}",
+    "npm_package_devDependencies_customize_cra": "^0.7.0",
+    "npm_package_scripts_build": "react-app-rewired build",
+    "KITTY_WINDOW_ID": "2",
+    "LC_MEASUREMENT": "en_US.UTF-8",
+    "npm_package_devDependencies_react_app_rewired": "^2.1.3",
+    "npm_config_version_git_tag": "true",
+    "npm_config_version_git_sign": "",
+    "LC_IDENTIFICATION": "en_US.UTF-8",
+    "npm_config_strict_ssl": "true",
+    "XDG_VTNR": "1",
+    "QT_IM_MODULE": "ibus",
+    "PWD": "/home/goldy/apps/shlaky/example/client",
+    "APP_ENV": "development",
+    "npm_execpath": "/usr/share/yarn/bin/yarn.js",
+    "XDG_DATA_DIRS": "/usr/local/share/:/usr/share/:/var/lib/snapd/desktop",
+    "NVM_CD_FLAGS": "-q",
+    "PGUSER": "adam",
+    "LC_NUMERIC": "en_US.UTF-8",
+    "AUTOJUMP_SOURCED": "1",
+    "npm_config_save_prefix": "^",
+    "npm_config_ignore_optional": "",
+    "LC_PAPER": "en_US.UTF-8",
+    "RBENV_VERSION": "2.6.3",
+    "INIT_CWD": "/home/goldy/apps/shlaky/example/client",
+    "npm_package_eslintConfig_extends": "react-app",
+    "npm_package_dependencies_react": "^16.9.0",
+    "NODE_ENV": "development",
+    "NODE_PATH": "",
+    "BABEL_ENV": "development"
+  },
+  "userLimits": {
+    "core_file_size_blocks": {
+      "soft": 0,
+      "hard": "unlimited"
+    },
+    "data_seg_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "file_size_blocks": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_locked_memory_bytes": {
+      "soft": 16777216,
+      "hard": 16777216
+    },
+    "max_memory_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "open_files": {
+      "soft": 1048576,
+      "hard": 1048576
+    },
+    "stack_size_bytes": {
+      "soft": 8388608,
+      "hard": "unlimited"
+    },
+    "cpu_time_seconds": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_user_processes": {
+      "soft": 62863,
+      "hard": 62863
+    },
+    "virtual_memory_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    }
+  },
+  "sharedObjects": [
+    "linux-vdso.so.1",
+    "/lib/x86_64-linux-gnu/libdl.so.2",
+    "/lib/x86_64-linux-gnu/librt.so.1",
+    "/usr/lib/x86_64-linux-gnu/libstdc++.so.6",
+    "/lib/x86_64-linux-gnu/libm.so.6",
+    "/lib/x86_64-linux-gnu/libgcc_s.so.1",
+    "/lib/x86_64-linux-gnu/libpthread.so.0",
+    "/lib/x86_64-linux-gnu/libc.so.6",
+    "/lib64/ld-linux-x86-64.so.2",
+    "/lib/x86_64-linux-gnu/libnss_files.so.2"
+  ]
+}

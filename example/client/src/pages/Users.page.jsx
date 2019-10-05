@@ -2,6 +2,7 @@ import React from 'react'
 import IconButton from '@material-ui/core/IconButton';
 import PeopleIcon from '@material-ui/icons/People'
 import Paper from '@material-ui/core/Paper'
+import { withShlaky } from 'shlaky'
 
 import UsersList from '../components/UsersList'
 
@@ -39,4 +40,4 @@ class UsersPage extends React.Component {
   }
 }
 
-export default UsersPage
+export default withShlaky(UsersPage)

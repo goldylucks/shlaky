@@ -44,6 +44,7 @@ function withShlaky(WrappedComponent, { styles } = {}) {
       return WrappedComponent.prototype.render.call(this)
     }
   }
+
   WithShlaky.contextType = FacadeContext
 
   WithShlaky.displayName = `WithShlaky(${getDisplayName(WrappedComponent)})`

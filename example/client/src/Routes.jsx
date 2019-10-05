@@ -8,7 +8,7 @@ import LoginPage from './pages/Login.page'
 import SignupPage from './pages/Signup.page'
 import ForgotPasswordPage from './pages/ForgotPassword.page'
 import UsersPage from './pages/Users.page'
-import { withShlaky } from './shlaky'
+import { withShlaky } from 'shlaky'
 
 class Routes extends Component {
   render() {

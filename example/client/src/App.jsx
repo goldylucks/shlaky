@@ -1,11 +1,10 @@
 import React from 'react'
 import ErrorBoundary from 'react-error-boundary'
 import { Router } from 'react-router-dom'
+import { withShlaky, ErrorFallbackComponent } from 'shlaky'
 
 import MuiThemeProvider from './components/MuiThemeProvider'
-import ErrorFallbackComponent from './shlaky/components/ErrorFallbackComponent'
 import Routes from './Routes'
-import { withShlaky } from './shlaky'
 
 class App extends React.Component {
   render() {
