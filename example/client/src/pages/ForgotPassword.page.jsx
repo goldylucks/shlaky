@@ -15,51 +15,58 @@ class LoginPage extends React.Component {
   render() {
     const { classes } = this.props
     return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Forgot password?
-        </Typography>
-        <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Restore Password
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link to={this.routing.get.login()} variant="body2">
-                Login
-              </Link>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Forgot password?
+          </Typography>
+          <form className={classes.form} onSubmit={this.onSubmit} noValidate>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Restore Password
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link to={this.routing.get.login()} variant="body2">
+                  Login
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link to={this.routing.get.signup()} variant="body2">
+                  Sign up
+                </Link>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Link to={this.routing.get.signup()} variant="body2">
-                Sign up
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-    </Container>
+          </form>
+        </div>
+      </Container>
+    )
+  }
+
+  onSubmit = evt => {
+    evt.preventDefault()
+    global.alert(
+      'password emailed to you! kinda ... well it is a demo so not really ...'
     )
   }
 }

@@ -16,15 +16,15 @@ class TaskList extends React.Component {
     return (
       <List className={classes.root}>
         {this.tasks.all().map(task => {
-          const labelId = `checkbox-list-label-${task.id}`
+          const labelId = `checkbox-list-label-${task._id}`
 
           return (
             <ListItem
-              key={task.title}
+              key={task._id}
               role={undefined}
               dense
               button
-              onClick={() => this.toggle(task.id)}
+              onClick={() => this.toggle(task._id)}
             >
               <ListItemIcon>
                 <Checkbox
@@ -36,7 +36,9 @@ class TaskList extends React.Component {
                 />
               </ListItemIcon>
               <ListItemText id={labelId} primary={task.title} />
-              <ListItemSecondaryAction>
+              <ListItemSecondaryAction
+                onClick={this.registerOnDelete(task._id)}
+              >
                 <IconButton edge="end" aria-label="comments">
                   <DeleteIcon />
                 </IconButton>
@@ -50,6 +52,10 @@ class TaskList extends React.Component {
 
   toggleTask(id) {
     this.tasks.update(id)
+  }
+
+  registerOnDelete = id => {
+    return () => this.tasks.destroy(id)
   }
 }
 
