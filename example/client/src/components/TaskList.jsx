@@ -24,7 +24,7 @@ class TaskList extends React.Component {
               role={undefined}
               dense
               button
-              onClick={() => this.toggle(task._id)}
+              onClick={() => this.toggleTask(task._id)}
             >
               <ListItemIcon>
                 <Checkbox
@@ -51,12 +51,10 @@ class TaskList extends React.Component {
   }
 
   toggleTask(id) {
-    this.tasks.update(id)
+    this.tasks.toggle.isDone(id)
   }
 
-  registerOnDelete = id => {
-    return () => this.tasks.destroy(id)
-  }
+  registerOnDelete = id => () => this.tasks.destroy(id)
 }
 
 const styles = theme => ({

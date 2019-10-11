@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`facade visualMode - set to not allowed: visual mode set to not allowed 1`] = `"[State visualMode] value not allowed is not in the allowed list:"`;

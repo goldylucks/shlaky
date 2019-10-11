@@ -9,13 +9,6 @@ class HomePage extends React.Component {
       <div>
         <h1>Welcome to Shlaky!</h1>
         <h2>This TODO app is built with ZERO custom front end logic. Shlaky handles everything!</h2>
-
-        <ul>
-          <li><Link to={this.routing.get.signup()}>Signup</Link></li>
-          <li><Link to={this.routing.get.login()}>Login</Link></li>
-          <li><Link to={this.routing.get.tasks()}>Tasks</Link></li>
-          <li><Link to={this.routing.get.users()}>Users</Link></li>
-        </ul>
       </div>
     )
   }

@@ -47,7 +47,7 @@ class ResourceStore extends Store {
     }
     this.debug('Adding', toAdd)
     const optimisticId = this.utils.misc.randomId()
-    const optimisticAdd = { ...toAdd, optimisticId }
+    const optimisticAdd = { ...toAdd, _id: optimisticId, optimisticId }
     this.addState = LOADING
     this.addError = ''
     // optimistic update
@@ -62,14 +62,14 @@ class ResourceStore extends Store {
       this.addError = errorMessage
       return
     }
-    const item = data[this.itemKey]
-    this.debug('Added', item)
+    const itemFromServer = data[this.itemKey]
+    this.debug('Added', itemFromServer)
     // replace optimistic update item with server response
-    this._all = this._all.map(_item =>
-      _item.optimisticId === optimisticId ? data[this.itemKey] : _item
+    this._all = this._all.map(item =>
+      item.optimisticId === optimisticId ? itemFromServer : item
     )
     this.addState = LOADED
-    return item
+    return itemFromServer
   })
 
   destroy = action(this.destroyActionName, async id => {
@@ -87,9 +87,34 @@ class ResourceStore extends Store {
       global.alert('error deleting')
       return
     }
+    this.debug(`Destroyed ${this._name} ${id}`)
+  })
+
+  update = action(this.updateActionName, async (id, dataToUpdate) => {
+    this.debug(`Updating ${this._name} ${id}`)
+    // optimistic update
+    const itemToUpdate = this._all.find(item => item._id === id)
+    this._all = this._all.map(item =>
+      item._id === id ? { ...itemToUpdate, ...dataToUpdate } : item
+    )
+    const { data, errorMessage } = await this.services.resource[
+      this._name
+    ].update(id, dataToUpdate)
+    if (errorMessage) {
+      // revert optimistic update
+      this._all = this._all.map(item => (item._id === id ? itemToUpdate : item))
+      return
+    }
+    const itemFromServer = data[this.itemKey]
+    // replace optimistic update item with server response
+    this._all = this._all.map(item => (item._id === id ? itemFromServer : item))
+    this.debug('Updated')
+    return itemFromServer
   })
 
   all = () => this._all
+
+  one = id => this._all.find(item => item._id === id)
 
   populateIsLoading = () => this.populateState === LOADING
 
@@ -115,6 +140,10 @@ class ResourceStore extends Store {
 
   get destroyActionName() {
     return `${this._displayName} destroy`
+  }
+
+  get updateActionName() {
+    return `${this._displayName} update`
   }
 
   get listKey() {

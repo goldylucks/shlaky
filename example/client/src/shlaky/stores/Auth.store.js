@@ -2,7 +2,7 @@
 
 import { extendObservable } from 'mobx'
 
-import { Store } from '..'
+import Store from './Store'
 
 class AuthStore extends Store {
   constructor(...args) {

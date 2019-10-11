@@ -24,27 +24,56 @@ class Facade extends Base {
 
   setupResources() {
     this.config.resources.forEach(this.setupResource)
+    this.config.resources.forEach(this.setupResourceFields)
   }
 
   setupResource = ({ key, add = {} }) => {
+    const store = this.stores[key]
     this[key] = Object.assign(this[key] || {}, {
-      populate: () => this.stores[key].populate(),
-      all: () => this.stores[key].all(),
-      one: id => this.stores[key].one(id),
-      destroy: id => this.stores[key].destroy(id),
-      update: (id, data) => this.stores[key].update(id, data),
+      populate: () => store.populate(),
+      all: () => store.all(),
+      one: id => store.one(id),
+      destroy: id => store.destroy(id),
+      update: (id, data) => store.update(id, data),
       add: data =>
-        this.stores[key]
+        store
           .add(this.buildAddData({ data, add }))
           .then(this.routeIfExists(add.onSuccessRoute)),
-      isEmpty: () => this.stores[key].isEmpty(),
-      populateIsLoading: () => this.stores[key].populateIsLoading(),
-      populateIsLoaded: () => this.stores[key].populateIsLoaded(),
-      populateHasError: () => this.stores[key].populateHasError(),
-      addIsLoading: () => this.stores[key].addIsLoading(),
-      addIsLoaded: () => this.stores[key].addIsLoaded(),
-      addHasError: () => this.stores[key].addHasError(),
+      isEmpty: () => store.isEmpty(),
+      populateIsLoading: () => store.populateIsLoading(),
+      populateIsLoaded: () => store.populateIsLoaded(),
+      populateHasError: () => store.populateHasError(),
+      addIsLoading: () => store.addIsLoading(),
+      addIsLoaded: () => store.addIsLoaded(),
+      addHasError: () => store.addHasError(),
     })
+  }
+
+  setupResourceFields = ({ key, fields }) => {
+    this[key].set = {}
+    this[key].get = {}
+    this[key].toggle = {}
+    fields.forEach(({ fieldKey, type }) =>
+      this.setupResourceField({ key, fieldKey, type })
+    )
+  }
+
+  setupResourceField = ({ key, fieldKey, type }) => {
+    this[key].set[fieldKey] = (id, nextValue) =>
+      this.stores[key].update(id, { [fieldKey]: nextValue })
+    this[key].get[fieldKey] = id => this.stores[key].one(id)
+    if (type === 'bool') {
+      this.setupResourceFieldBool({ key, fieldKey })
+      return
+    }
+  }
+
+  setupResourceFieldBool({ key, fieldKey }) {
+    this[key].toggle[fieldKey] = id => {
+      const item = this.stores[key].one(id)
+      const nextValue = !item[fieldKey]
+      this.stores[key].update(id, { [fieldKey]: nextValue })
+    }
   }
 
   buildAddData({ data, add }) {
