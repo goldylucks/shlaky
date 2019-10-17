@@ -1,7 +1,7 @@
 {
   "scripts": {
     "lint": "eslint packages/**/src --ext .js,jsx",
-    "prettier": "prettier 'packages/**/src/*.{js,jsx}'"
+    "prettier": "prettier -c 'packages/**/src/*.{js,jsx}'"
   },
   "private": true,
   "workspaces": [
