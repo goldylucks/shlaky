@@ -1,9 +1,29 @@
 import pluralize from 'pluralize'
 
 export const getOne = (model, { byUser = false } = {}) => async (req, res) => {
+  const { item, error } = await this.services.db.getOne({ model, query })
+
+  if (error) {
+    console.error(error)
+    res.status(400).end()
+    return
+  }
+
+  if (!item) {
+    res.status(400).end()
+    return
+  }
+
+  res.status(200).json({ [itemKey(model)]: item })
+
+  
+  const query = { _id: req.params.id }
+  if (byUser) {
+    query.createdBy = req.user._id
+  }
   try {
     const doc = await model
-      .findOne({ createdBy: req.user._id, _id: req.params.id })
+      .findOne(query)
       .lean()
       .exec()
 
@@ -11,7 +31,7 @@ export const getOne = (model, { byUser = false } = {}) => async (req, res) => {
       return res.status(400).end()
     }
 
-    res.status(200).json({ data: doc })
+    res.status(200).json({ [itemKey(model)]: doc })
   } catch (e) {
     console.error(e)
     res.status(400).end()
