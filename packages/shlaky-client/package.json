@@ -1,0 +1,26 @@
+{
+  "name": "shlaky-client",
+  "version": "0.0.0",
+  "description": "shhhhhlaky!",
+  "main": "lib/index.js",
+  "repository": "https://github.com/goldylucks/shlaky",
+  "author": "Adam Goldman <goldy@adamgoldman.me>",
+  "license": "GPL-3.0",
+  "scripts": {
+    "build": "babel src --out-dir lib",
+    "dev": "nodemon --exec yarn build"
+  },
+  "peerDependencies": {
+    "history": "^4.10.1",
+    "lodash": "^4.17.15",
+    "mobx": "^5.13.0",
+    "mobx-logger": "^0.7.1",
+    "mobx-react": "^6.1.3",
+    "pluralize": "^8.0.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-router-dom": "^5.0.1",
+    "uuid": "^3.3.3"
+  }
+}

@@ -1,14 +1,9 @@
 module.exports = {
-  env: {
-    browser: true,
-    jest: true,
-  },
-  parser: 'babel-eslint',
-  extends: ['airbnb', 'prettier'],
+  extends: ['react-app', 'airbnb', 'prettier'],
   plugins: ['prettier', 'import'],
   rules: {
+    'no-underscore-dangle': 0,
     'prettier/prettier': 'error',
-    'react/jsx-props-no-spreading': 0,
     'react/forbid-prop-types': 0,
     'react/destructuring-assignment': 0,
     'react/prefer-stateless-function': 0,
@@ -20,8 +15,8 @@ module.exports = {
     'jsx-a11y/accessible-emoji': 0,
     'jsx-a11y/anchor-has-content': 0,
     'import/order': [2, { 'newlines-between': 'always' }],
-    'import/no-unresolved': 2,
-    'no-underscore-dangle': 0,
+    'import/no-unresolved': ['error', { ignore: getPeerDependenciesKeys() }],
+
     'max-params': [2, { max: 2 }],
     'lines-between-class-members': [2, 'always'],
     'object-curly-spacing': [2, 'always'],
@@ -34,4 +29,13 @@ module.exports = {
     'class-methods-use-this': 0,
     'consistent-return': 0,
   },
+}
+
+function getPeerDependenciesKeys() {
+  const deps = {
+    ...require('./packages/shlaky-server/package.json').peerDependencies,
+    ...require('./packages/shlaky-client/package.json').peerDependencies,
+  }
+
+  return Object.keys(deps)
 }

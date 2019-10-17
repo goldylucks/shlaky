@@ -27,7 +27,8 @@ export const protect = async (req, res, next) => {
   let payload
   try {
     payload = await verifyToken(token)
-  } catch (e) {
+  } catch (error) {
+    global.console.error('[utils.auth.protect] error:', error)
     return res.status(401).end()
   }
 
