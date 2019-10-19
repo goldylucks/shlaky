@@ -17,7 +17,9 @@ class UsersModel extends Model {
     this.schema = this.getSchema()
     this.schema.pre('save', this.preSave)
     this.schema.methods.checkPassword = this.checkPassword
-    this.schema.methods.formatToResponse = this.formatToResponse
+    this.schema.methods.formatToResponse = this.registerFormatToResponse({
+      utils: this.utils,
+    })
     this.instance = mongoose.model('users', this.schema)
   }
 
@@ -68,13 +70,14 @@ class UsersModel extends Model {
     })
   }
 
-  formatToResponse() {
-    return {
-      ...this.toJSON(),
-      password: undefined,
-      token: this.utils.auth.newToken(this),
+  registerFormatToResponse = ({ utils }) =>
+    function formatToResponse() {
+      return {
+        ...this.toJSON(),
+        password: undefined,
+        token: utils.auth.newToken(this),
+      }
     }
-  }
 }
 
 export default UsersModel

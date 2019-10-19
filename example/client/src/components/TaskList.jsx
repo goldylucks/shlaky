@@ -8,7 +8,7 @@ import Checkbox from '@material-ui/core/Checkbox'
 import IconButton from '@material-ui/core/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete'
 
-import { withShlaky } from 'shlaky'
+import { withShlaky } from 'shlaky-client'
 
 class TaskList extends React.Component {
   render() {

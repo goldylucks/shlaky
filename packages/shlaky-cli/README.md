@@ -17,5 +17,5 @@ facade.create.service({ side: facade.constants.sides.CLIENT, key: 'localStorage'
 side: 'client' | 'server' | 'both' | 'cli'
 type: 'constants' | 'util '| 'helper' |  'model' | 'manager' | 'service' | 'middleware' | 'controller' | 'router' | 'meta' | 'store' | 'state' | 'page' | 'component'
 crudKey: 'create' | 'read' | 'update' | 'destroy'
-key: String // name of what we are creating, i.e. "resource", "localStorage" etc
+key: String // 'tasks', 'users', name of what we are creating, i.e. "resource", "localStorage" etc
 ```

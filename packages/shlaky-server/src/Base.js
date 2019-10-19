@@ -1,6 +1,6 @@
 class Base {
   constructor(dependencies) {
-    Object.assign(this, ...dependencies)
+    Object.assign(this, dependencies)
   }
 }
 

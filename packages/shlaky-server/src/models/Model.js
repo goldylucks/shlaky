@@ -5,7 +5,7 @@ class Model extends Base {
     if (!this.instance) {
       this.setupInstance()
     }
-    return this.instnace
+    return this.instance
   }
 }
 

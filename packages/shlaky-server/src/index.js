@@ -1,3 +1,3 @@
-import start from './server'
+import server from './server'
 
-start()
+export default server

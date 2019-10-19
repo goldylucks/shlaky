@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { withShlaky } from 'shlaky'
+import { withShlaky } from 'shlaky-client'
 
 class Nav extends React.Component {
   render() {

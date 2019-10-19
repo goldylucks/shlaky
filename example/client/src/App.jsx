@@ -1,7 +1,7 @@
 import React from 'react'
 import ErrorBoundary from 'react-error-boundary'
 import { Router } from 'react-router-dom'
-import { withShlaky, ErrorFallbackComponent } from 'shlaky'
+import { withShlaky, ErrorFallbackComponent } from 'shlaky-client'
 
 import MuiThemeProvider from './components/MuiThemeProvider'
 import Nav from './components/Nav'

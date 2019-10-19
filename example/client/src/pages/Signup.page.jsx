@@ -11,7 +11,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 
-import { withShlaky } from 'shlaky'
+import { withShlaky } from 'shlaky-client'
 
 class SignupPage extends React.Component {
   render() {
@@ -30,8 +30,8 @@ class SignupPage extends React.Component {
           <TextField
             variant="outlined"
             margin="normal"
-            value={this.auth.emailInput}
-            onChange={this.auth.onEmailInputChange}
+            value={this.auth.get.email()}
+            onChange={this.auth.set.email}
             required
             fullWidth
             id="email"
@@ -46,8 +46,8 @@ class SignupPage extends React.Component {
             required
             fullWidth
             name="password"
-            value={this.auth.password}
-            onChange={this.auth.onPasswordInputChange}
+            value={this.auth.get.password()}
+            onChange={this.auth.set.password}
             label="Password"
             type="password"
             id="password"

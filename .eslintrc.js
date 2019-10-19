@@ -1,10 +1,17 @@
 module.exports = {
-  extends: ['react-app', 'airbnb', 'prettier'],
-  plugins: ['prettier', 'import'],
+  extends: ['airbnb', 'prettier'],
+  plugins: ['react', 'prettier', 'import'],
+  parser: 'babel-eslint',
+  env: {
+    jest: true,
+    browser: true,
+    node: true,
+  },
   rules: {
     'no-underscore-dangle': 0,
     'prettier/prettier': 'error',
     'react/forbid-prop-types': 0,
+    'react/jsx-props-no-spreading': 0,
     'react/destructuring-assignment': 0,
     'react/prefer-stateless-function': 0,
     'react/jsx-indent': 0, // disabled in favor of prettir
@@ -16,7 +23,6 @@ module.exports = {
     'jsx-a11y/anchor-has-content': 0,
     'import/order': [2, { 'newlines-between': 'always' }],
     'import/no-unresolved': ['error', { ignore: getPeerDependenciesKeys() }],
-
     'max-params': [2, { max: 2 }],
     'lines-between-class-members': [2, 'always'],
     'object-curly-spacing': [2, 'always'],

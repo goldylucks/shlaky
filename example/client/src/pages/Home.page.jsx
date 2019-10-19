@@ -1,7 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
-import { withShlaky } from 'shlaky'
+import { withShlaky } from 'shlaky-client'
 
 class HomePage extends React.Component {
   render() {

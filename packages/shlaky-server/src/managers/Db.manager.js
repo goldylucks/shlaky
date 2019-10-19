@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 import Manager from './Manager'
 
 class DbManager extends Manager {
-  keys = ['users']
+  keys = ['users', 'tasks']
 
   constructor(...args) {
     super(...args)
@@ -15,13 +15,13 @@ class DbManager extends Manager {
   }
 
   setupResource = key => {
-    this.key = {
+    this[key] = {
       getOne: id => this.getOne(id, { model: this.models[key].getInstance() }),
       getMany: () => this.getMany({ model: this.models[key].getInstance() }),
       createOne: data =>
         this.createOne({ model: this.models[key].getInstance(), data }),
       updateOne: (id, data) =>
-        this.createOne(id, { model: this.models[key].getInstance(), data }),
+        this.updateOne(id, { model: this.models[key].getInstance(), data }),
       destroyOne: id =>
         this.destroyOne(id, { model: this.models[key].getInstance() }),
     }
@@ -56,7 +56,11 @@ class DbManager extends Manager {
       const item = await model.create(data)
       return { item }
     } catch (error) {
-      console.error(`[db.createOne] ${model.collection.name} with data`, data)
+      console.error(
+        `[db.createOne] error ${model.collection.name} with data`,
+        data
+      )
+      console.error(error)
       return { error, item: {} }
     }
   }

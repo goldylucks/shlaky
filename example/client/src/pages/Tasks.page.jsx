@@ -3,8 +3,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar'
 import ListIcon from '@material-ui/icons/List'
 import Paper from '@material-ui/core/Paper'
+import { withShlaky } from 'shlaky-client'
 
-import { withShlaky } from 'shlaky'
 import AddTask from '../components/AddTask'
 import TaskList from '../components/TaskList'
 

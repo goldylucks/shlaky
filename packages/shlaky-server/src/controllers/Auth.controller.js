@@ -13,7 +13,7 @@ class AuthController extends Controller {
       return
     }
 
-    const { item, error } = await this.services.resource.user.getOne({ email })
+    const { item, error } = await this.services.resource.users.getOne({ email })
 
     if (error) {
       res
@@ -45,7 +45,7 @@ class AuthController extends Controller {
       return
     }
 
-    const { item, error } = await this.services.resource.user.createOne({
+    const { item, error } = await this.services.resource.users.createOne({
       email,
       password,
     })

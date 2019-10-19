@@ -2,7 +2,7 @@ import React from 'react'
 import IconButton from '@material-ui/core/IconButton';
 import PeopleIcon from '@material-ui/icons/People'
 import Paper from '@material-ui/core/Paper'
-import { withShlaky } from 'shlaky'
+import { withShlaky } from 'shlaky-client'
 
 import UsersList from '../components/UsersList'
 

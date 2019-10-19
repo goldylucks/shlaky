@@ -9,7 +9,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 
-import { withShlaky } from 'shlaky'
+import { withShlaky } from 'shlaky-client'
 
 class LoginPage extends React.Component {
   render() {
