@@ -67,7 +67,7 @@ class DbManager extends Manager {
 
   updateOne = async (id, { model, data }) => {
     try {
-      const item = await model.findByIdAndUpdate(id, data)
+      const item = await model.findByIdAndUpdate(id, data, { new: true })
       if (!item) {
         console.error(
           `[db.updateOne] ${model.collection.name} with id ${id} not found`
