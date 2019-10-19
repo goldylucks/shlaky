@@ -104,6 +104,7 @@ class Facade extends Base {
     this.currentUser = {
       logout: () => this.stores.currentUser.logout(),
       refresh: () => this.stores.currentUser.refresh(),
+      set: user => this.stores.currentUser.set(user),
     }
   }
 
@@ -111,7 +112,10 @@ class Facade extends Base {
     extendObservable(this, {
       auth: {
         ...this.generateAuthFields(),
-        signup: () => this.stores.auth.signup(),
+        signup: () => {
+          const user = this.stores.auth.signup()
+          this.currentUser.set(user)
+        },
         login: () => this.stores.auth.login(),
         forgotPassword: () => this.stores.auth.login(),
       },
