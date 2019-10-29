@@ -138,6 +138,18 @@ class CurrentUserStore extends Store {
     }
     global.console.error('type', type, 'is invalid')
   }
+
+  isLoggedIn() {
+    return !!this.id
+  }
+
+  get id() {
+    return this.user._id
+  }
+
+  get() {
+    return this.user
+  }
 }
 
 export default CurrentUserStore

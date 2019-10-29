@@ -4,8 +4,10 @@ import { Router } from 'react-router-dom'
 import { withShlaky, ErrorFallbackComponent } from 'shlaky-client'
 
 import MuiThemeProvider from './components/MuiThemeProvider'
-import Nav from './components/Nav'
+import TopBar from './components/TopBar'
 import Routes from './Routes'
+
+import './App.css'
 
 class App extends React.Component {
   render() {
@@ -14,7 +16,7 @@ class App extends React.Component {
       <MuiThemeProvider>
         <ErrorBoundary FallbackComponent={ErrorFallbackComponent}>
           <Router history={utils.history}>
-            <Nav />
+            <TopBar />
             <Routes />
           </Router>
         </ErrorBoundary>

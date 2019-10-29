@@ -168,6 +168,10 @@ let CurrentUserStore = (_dec = _mobx.action.bound, _dec2 = _mobx.action.bound, _
     global.console.error('type', type, 'is invalid');
   }
 
+  isLoggedIn() {
+    return !!this.user._id;
+  }
+
 }, _class2.__name = 'currentUser', _temp), (_descriptor = _applyDecoratedDescriptor(_class.prototype, "processingCreateState", [_mobx.observable], {
   configurable: true,
   enumerable: true,

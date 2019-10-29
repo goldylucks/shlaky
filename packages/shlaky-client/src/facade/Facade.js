@@ -105,6 +105,8 @@ class Facade extends Base {
       logout: () => this.stores.currentUser.logout(),
       refresh: () => this.stores.currentUser.refresh(),
       set: user => this.stores.currentUser.set(user),
+      get: () => this.stores.currentUser.get(),
+      isLoggedIn: () => this.stores.currentUser.isLoggedIn(),
     }
   }
 

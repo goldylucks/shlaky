@@ -6,6 +6,7 @@ var _config = _interopRequireDefault(require("../../config"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// eslint-disable-next-line import/no-unresolved
 const overrides = {
   App: () => 'Shlaky test app'
 };

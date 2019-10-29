@@ -23,3 +23,54 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+/*
+ * Exposed API
+ */
+
+Cypress.Commands.add('signup', signup)
+Cypress.Commands.add('topBarVisible', topBarVisible)
+Cypress.Commands.add('containsMany', containsMany)
+Cypress.Commands.add('getPartialClass', getPartialClass)
+Cypress.Commands.add('pathnameIs', pathnameIs)
+Cypress.Commands.add('logout', logout)
+
+/*
+ * API Implementations
+ */
+
+function signup() {
+  const name = global.randomUserName()
+  cy.request({
+    method: 'POST',
+    url: 'http://localhost:3000/api/v1/users',
+    body: {
+      name,
+    },
+  }).then(resp => {
+    window.localStorage.setItem('user', JSON.stringify(resp.body))
+  })
+}
+
+function topBarVisible() {
+  return getTopBar().should('not.be.visible')
+}
+
+function getTopBar() {
+  return getPartialClass('TopBar')
+}
+
+function containsMany(args) {
+  args.forEach(arg => cy.contains(String(arg)))
+}
+
+function getPartialClass(str) {
+  return cy.get(`[class*=${str}]`)
+}
+function pathnameIs(pathname) {
+  cy.location('pathname').should('eq', pathname)
+}
+
+function logout() {
+  cy.clearLocalStorage('user')
+}

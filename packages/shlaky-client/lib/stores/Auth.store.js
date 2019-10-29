@@ -36,12 +36,10 @@ class AuthStore extends _Store.default {
       } = await this.managers.api.auth.signup(this.inputs);
 
       if (error) {
-        global.alert(error.message);
         global.console.error(error);
         return;
       }
 
-      this.managers.localStorage.set.currentUser(user);
       return user;
     };
 

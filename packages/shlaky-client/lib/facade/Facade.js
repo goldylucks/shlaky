@@ -82,7 +82,6 @@ class Facade extends _Base.default {
           key,
           fieldKey
         });
-        return;
       }
     };
 
@@ -193,14 +192,19 @@ class Facade extends _Base.default {
   setupCurrentUser() {
     this.currentUser = {
       logout: () => this.stores.currentUser.logout(),
-      refresh: () => this.stores.currentUser.refresh()
+      refresh: () => this.stores.currentUser.refresh(),
+      set: user => this.stores.currentUser.set(user),
+      isLoggedIn: () => this.stores.currentUser.isLoggedIn()
     };
   }
 
   setupAuth() {
     (0, _mobx.extendObservable)(this, {
       auth: { ...this.generateAuthFields(),
-        signup: () => this.stores.auth.signup(),
+        signup: () => {
+          const user = this.stores.auth.signup();
+          this.currentUser.set(user);
+        },
         login: () => this.stores.auth.login(),
         forgotPassword: () => this.stores.auth.login()
       }

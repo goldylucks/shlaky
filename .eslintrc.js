@@ -1,13 +1,16 @@
 module.exports = {
-  extends: ['airbnb', 'prettier'],
-  plugins: ['react', 'prettier', 'import'],
+  extends: ['airbnb', 'prettier', 'plugin:cypress/recommended'],
+  plugins: ['react', 'prettier', 'import', 'cypress', 'chai-friendly'],
   parser: 'babel-eslint',
   env: {
     jest: true,
     browser: true,
     node: true,
+    'cypress/globals': true,
   },
   rules: {
+    'no-unused-expressions': 0,
+    'chai-friendly/no-unused-expressions': 2,
     'no-underscore-dangle': 0,
     'prettier/prettier': 'error',
     'react/forbid-prop-types': 0,

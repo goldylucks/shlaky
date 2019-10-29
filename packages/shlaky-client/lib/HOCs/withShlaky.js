@@ -9,7 +9,7 @@ var _mobx = require("mobx");
 
 var _mobxReact = require("mobx-react");
 
-var _withStyles = _interopRequireDefault(require("@material-ui/styles/withStyles"));
+var _styles = require("@material-ui/core/styles");
 
 var _facadeContext = _interopRequireDefault(require("../facade/facadeContext"));
 
@@ -66,7 +66,7 @@ function withShlaky(WrappedComponent, {
 
   WithShlaky.contextType = _facadeContext.default;
   WithShlaky.displayName = `WithShlaky(${getDisplayName(WrappedComponent)})`;
-  return styles ? (0, _withStyles.default)(styles)(WithShlaky) : WithShlaky;
+  return styles ? (0, _styles.withStyles)(styles)(WithShlaky) : WithShlaky;
 }
 
 var _default = withShlaky;
