@@ -1,13 +1,12 @@
 {
-  "name": "shlaky-docs",
+  "name": "shlaky-functional",
   "version": "0.0.0",
-  "description": "Shlaky Docs",
+  "description": "Shlaky Functional",
   "main": "lib/index.js",
   "repository": "https://github.com/goldylucks/shlaky",
   "author": "Adam Goldman <goldy@adamgoldman.me>",
   "license": "GPL-3.0",
   "peerDependencies": {
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0"
+    "react": "^16.11.0"
   }
 }
