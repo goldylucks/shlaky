@@ -22,6 +22,13 @@ module.exports = {
     'jsx-a11y/accessible-emoji': 0,
     'jsx-a11y/anchor-has-content': 0,
     'import/order': [2, { 'newlines-between': 'always' }],
+    'import/prefer-default-export': 0,
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: ['**/*.{test,spec,stories}.{js,jsx}'],
+      },
+    ],
     'import/no-unresolved': ['error', { ignore: getPeerDependenciesKeys() }],
     'max-params': [2, { max: 2 }],
     'lines-between-class-members': [2, 'always'],
