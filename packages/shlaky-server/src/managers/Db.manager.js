@@ -36,7 +36,10 @@ class DbManager extends Manager {
       const item = await model.findById(id)
       return { item }
     } catch (error) {
-      console.error(`[db.getOne] ${model.collection.name} with id ${id}`, error)
+      global.console.error(
+        `[db.getOne] ${model.collection.name} with id ${id}`,
+        error
+      )
       return { error, item: {} }
     }
   }
@@ -46,7 +49,7 @@ class DbManager extends Manager {
       const collection = await model.find()
       return { collection }
     } catch (error) {
-      console.error(`[db.getMany] ${model.collection.name}`)
+      global.console.error(`[db.getMany] ${model.collection.name}`)
       return { error, collection: [] }
     }
   }
@@ -56,11 +59,11 @@ class DbManager extends Manager {
       const item = await model.create(data)
       return { item }
     } catch (error) {
-      console.error(
+      global.console.error(
         `[db.createOne] error ${model.collection.name} with data`,
         data
       )
-      console.error(error)
+      global.console.error(error)
       return { error, item: {} }
     }
   }
@@ -69,14 +72,14 @@ class DbManager extends Manager {
     try {
       const item = await model.findByIdAndUpdate(id, data, { new: true })
       if (!item) {
-        console.error(
+        global.console.error(
           `[db.updateOne] ${model.collection.name} with id ${id} not found`
         )
         return { error: new Error('not found'), item: {} }
       }
       return { item }
     } catch (error) {
-      console.error(
+      global.console.error(
         `[db.updateOne] ${model.collection.name} with id ${id}`,
         error
       )
@@ -88,14 +91,14 @@ class DbManager extends Manager {
     try {
       const item = await model.findByIdAndRemove(id)
       if (!item) {
-        console.error(
+        global.console.error(
           `[db.destroyOne] ${model.collection.name} with id ${id} not found`
         )
         return { error: new Error('not found'), item: {} }
       }
       return { item }
     } catch (error) {
-      console.error(
+      global.console.error(
         `[db.updateOne] ${model.collection.name} with id ${id}`,
         error
       )

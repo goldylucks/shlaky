@@ -56,16 +56,13 @@ class TasksController extends Controller {
 
   destroyOne = async (req, res) => {
     const { id } = req.params
-    console.log('destroy one', id)
-    const { item, error } = await this.services.resource.tasks.destroyOne(id)
-    console.log('item', item)
+    const { error } = await this.services.resource.tasks.destroyOne(id)
     if (error) {
       global.consoe.error('[tasks.destroyOne] error', error)
       res.status(400).send({ message: 'error destroying task', error })
       return
     }
     res.status(200).send({ message: 'deleted' })
-    console.log('done destroy one')
   }
 }
 
