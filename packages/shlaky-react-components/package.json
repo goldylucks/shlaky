@@ -1,5 +1,5 @@
 {
-  "name": "shlaky-components",
+  "name": "shlaky-react-components",
   "license": "GPL-3.0",
   "version": "0.0.0",
   "dependencies": {
@@ -8,12 +8,14 @@
     "react-scripts": "3.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
+    "clean": "rimraf build",
+    "predeploy": "yarn build",
+    "deploy": "aws s3 sync build/ s3://shlaky-react-components --acl public-read",
+    "deploy-only": "aws s3 sync build/ s3://shlaky-react-components --acl public-read",
     "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "start": "start-storybook -p 9009 -s public",
+    "build": "build-storybook -s public"
   },
   "browserslist": {
     "production": [
