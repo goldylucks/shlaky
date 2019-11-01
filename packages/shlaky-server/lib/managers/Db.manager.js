@@ -53,7 +53,7 @@ class DbManager extends _Manager.default {
           item
         };
       } catch (error) {
-        console.error(`[db.getOne] ${model.collection.name} with id ${id}`, error);
+        global.console.error(`[db.getOne] ${model.collection.name} with id ${id}`, error);
         return {
           error,
           item: {}
@@ -70,7 +70,7 @@ class DbManager extends _Manager.default {
           collection
         };
       } catch (error) {
-        console.error(`[db.getMany] ${model.collection.name}`);
+        global.console.error(`[db.getMany] ${model.collection.name}`);
         return {
           error,
           collection: []
@@ -88,8 +88,8 @@ class DbManager extends _Manager.default {
           item
         };
       } catch (error) {
-        console.error(`[db.createOne] error ${model.collection.name} with data`, data);
-        console.error(error);
+        global.console.error(`[db.createOne] error ${model.collection.name} with data`, data);
+        global.console.error(error);
         return {
           error,
           item: {}
@@ -107,7 +107,7 @@ class DbManager extends _Manager.default {
         });
 
         if (!item) {
-          console.error(`[db.updateOne] ${model.collection.name} with id ${id} not found`);
+          global.console.error(`[db.updateOne] ${model.collection.name} with id ${id} not found`);
           return {
             error: new Error('not found'),
             item: {}
@@ -118,7 +118,7 @@ class DbManager extends _Manager.default {
           item
         };
       } catch (error) {
-        console.error(`[db.updateOne] ${model.collection.name} with id ${id}`, error);
+        global.console.error(`[db.updateOne] ${model.collection.name} with id ${id}`, error);
         return {
           error,
           item: {}
@@ -133,7 +133,7 @@ class DbManager extends _Manager.default {
         const item = await model.findByIdAndRemove(id);
 
         if (!item) {
-          console.error(`[db.destroyOne] ${model.collection.name} with id ${id} not found`);
+          global.console.error(`[db.destroyOne] ${model.collection.name} with id ${id} not found`);
           return {
             error: new Error('not found'),
             item: {}
@@ -144,7 +144,7 @@ class DbManager extends _Manager.default {
           item
         };
       } catch (error) {
-        console.error(`[db.updateOne] ${model.collection.name} with id ${id}`, error);
+        global.console.error(`[db.updateOne] ${model.collection.name} with id ${id}`, error);
         return {
           error,
           item: {}

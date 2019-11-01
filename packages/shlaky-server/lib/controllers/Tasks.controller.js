@@ -102,12 +102,9 @@ class TasksController extends _Controller.default {
       const {
         id
       } = req.params;
-      console.log('destroy one', id);
       const {
-        item,
         error
       } = await this.services.resource.tasks.destroyOne(id);
-      console.log('item', item);
 
       if (error) {
         global.consoe.error('[tasks.destroyOne] error', error);
@@ -121,7 +118,6 @@ class TasksController extends _Controller.default {
       res.status(200).send({
         message: 'deleted'
       });
-      console.log('done destroy one');
     };
   }
 

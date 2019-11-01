@@ -101,10 +101,10 @@ const start = async () => {
   try {
     await managers.db.connect();
     app.listen(config.port, () => {
-      console.log(`Listening on ${config.port}`);
+      global.console.log(`Listening on ${config.port}`);
     });
   } catch (error) {
-    console.error('Error starting app', error);
+    global.console.error('Error starting app', error);
   }
 };
 

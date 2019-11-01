@@ -7,7 +7,7 @@
   "author": "Adam Goldman <goldy@adamgoldman.me>",
   "license": "GPL-3.0",
   "scripts": {
-    "build": "babel src --out-dir lib",
+    "build": "babel src --out-dir lib --root-mode upward",
     "dev": "nodemon --exec yarn build"
   },
   "peerDependencies": {

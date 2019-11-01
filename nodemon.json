@@ -4,7 +4,10 @@
     ".git",
     "node_modules/**/node_modules",
     "lib",
-    "dist"
+    "dist",
+    "packages/**/node_modules",
+    "packages/**/dist",
+    "packages/**/lib"
   ],
   "verbose": true,
   "execMap": {
