@@ -194,6 +194,7 @@ class Facade extends _Base.default {
       logout: () => this.stores.currentUser.logout(),
       refresh: () => this.stores.currentUser.refresh(),
       set: user => this.stores.currentUser.set(user),
+      get: () => this.stores.currentUser.get(),
       isLoggedIn: () => this.stores.currentUser.isLoggedIn()
     };
   }
@@ -203,10 +204,11 @@ class Facade extends _Base.default {
       auth: { ...this.generateAuthFields(),
         signup: () => {
           const user = this.stores.auth.signup();
+          console.log('user', user);
           this.currentUser.set(user);
         },
         login: () => this.stores.auth.login(),
-        forgotPassword: () => this.stores.auth.login()
+        forgotPassword: () => this.stores.auth.forgotPassword()
       }
     });
   }

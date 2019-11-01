@@ -116,10 +116,11 @@ class Facade extends Base {
         ...this.generateAuthFields(),
         signup: () => {
           const user = this.stores.auth.signup()
+          console.log('user', user)
           this.currentUser.set(user)
         },
         login: () => this.stores.auth.login(),
-        forgotPassword: () => this.stores.auth.login(),
+        forgotPassword: () => this.stores.auth.forgotPassword(),
       },
     })
   }
