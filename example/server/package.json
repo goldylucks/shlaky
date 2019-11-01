@@ -1,7 +1,6 @@
 {
   "name": "shlaky-example-server",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.0.0",
   "license": "GPL-3.0",
   "private": true,
   "scripts": {

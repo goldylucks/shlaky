@@ -24,35 +24,27 @@ class TopBar extends React.Component {
         <AppBar>
           <Toolbar>
             <div className={classes.leftSide}>
-            <Link to={this.routing.get.home()}>
-              <HomeIcon />
-            </Link>
-
-          </div>
-          <div>
-
-            <Link to={this.routing.get.tasks()}>
-              Tasks
-            </Link>
-          </div>
+              <Link to={this.routing.get.home()}>
+                <HomeIcon />
+              </Link>
+            </div>
+            <div>
+              <Link to={this.routing.get.tasks()}>Tasks</Link>
+            </div>
             {currentUser.isLoggedIn() ? (
-                <IconButton
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={() => this.routing.to.profile()}
-                  color="inherit"
-                >
-                  <AccountCircle />
-                </IconButton>
+              <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={() => this.routing.to.profile()}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
             ) : (
               <>
-                <Link to={this.routing.get.login()}>
-                  Login
-                </Link>
-                <Link to={this.routing.get.signup()} >
-                  Signup
-                </Link>
+                <Link to={this.routing.get.login()}>Login</Link>
+                <Link to={this.routing.get.signup()}>Signup</Link>
               </>
             )}
           </Toolbar>

@@ -98,11 +98,9 @@ class AuthController extends _Controller.default {
         return;
       }
 
-      const token = this.utils.auth.newToken(user);
-      const user = {
-        token,
-        ...item.formatToResponse()
+      const user = { ...item.formatToResponse()
       };
+      user.token = this.utils.auth.newToken(user);
       res.status(201).json({
         user
       });
