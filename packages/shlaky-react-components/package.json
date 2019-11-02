@@ -8,13 +8,11 @@
     "react-scripts": "3.2.0"
   },
   "scripts": {
-    "test": "react-scripts test",
     "clean": "rimraf build",
     "predeploy": "yarn build",
     "deploy": "aws s3 sync build/ s3://shlaky-react-components --acl public-read",
     "deploy-only": "aws s3 sync build/ s3://shlaky-react-components --acl public-read",
-    "eject": "react-scripts eject",
-    "start": "start-storybook --port 9009 --static-dir public",
+    "dev": "start-storybook --port 9009 --static-dir public",
     "build": "build-storybook --static-dir public --output-dir build"
   },
   "browserslist": {

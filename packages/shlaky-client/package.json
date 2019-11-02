@@ -2,12 +2,14 @@
   "name": "shlaky-client",
   "version": "0.0.0",
   "description": "shhhhhlaky!",
-  "main": "lib/index.js",
+  "main": "build/index.js",
   "repository": "https://github.com/goldylucks/shlaky",
   "author": "Adam Goldman <goldy@adamgoldman.me>",
   "license": "GPL-3.0",
   "scripts": {
-    "build": "babel src --out-dir lib --root-mode upward",
+    "clean": "rimraf build",
+    "prebuild": "yarn clean",
+    "build": "babel src --out-dir build --root-mode upward",
     "dev": "nodemon --exec yarn build"
   },
   "peerDependencies": {
@@ -22,8 +24,5 @@
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.0.1",
     "uuid": "^3.3.3"
-  },
-  "devDependencies": {
-    "nodemon": "^1.19.4"
   }
 }

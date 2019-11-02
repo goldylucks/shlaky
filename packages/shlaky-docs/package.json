@@ -2,7 +2,7 @@
   "name": "shlaky-docs",
   "version": "0.0.0",
   "description": "Shlaky Docs",
-  "main": "lib/index.js",
+  "main": "build/index.js",
   "repository": "https://github.com/goldylucks/shlaky",
   "author": "Adam Goldman <goldy@adamgoldman.me>",
   "license": "GPL-3.0",
