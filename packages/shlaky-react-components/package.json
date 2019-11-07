@@ -13,7 +13,9 @@
     "deploy": "aws s3 sync build/ s3://shlaky-react-components --acl public-read",
     "deploy-only": "aws s3 sync build/ s3://shlaky-react-components --acl public-read",
     "dev": "start-storybook --port 9009 --static-dir public",
-    "build": "build-storybook --static-dir public --output-dir build"
+    "build": "build-storybook --static-dir public --output-dir build",
+    "lint": "eslint src --ext .js,jsx",
+    "prettier": "prettier -c 'src/*.{js,jsx}'"
   },
   "browserslist": {
     "production": [

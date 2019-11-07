@@ -3,6 +3,14 @@
   "version": "0.0.0",
   "description": "Shlaky Docs",
   "main": "build/index.js",
+  "scripts": {
+    "clean": "rimraf build",
+    "prebuild": "yarn clean",
+    "build": "babel src --out-dir build --root-mode upward",
+    "dev": "nodemon --exec yarn build",
+    "lint": "eslint src --ext .js,jsx",
+    "prettier": "prettier -c 'src/*.{js,jsx}'"
+  },
   "repository": "https://github.com/goldylucks/shlaky",
   "author": "Adam Goldman <goldy@adamgoldman.me>",
   "license": "GPL-3.0",

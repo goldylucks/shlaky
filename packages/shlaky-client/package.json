@@ -10,7 +10,9 @@
     "clean": "rimraf build",
     "prebuild": "yarn clean",
     "build": "babel src --out-dir build --root-mode upward",
-    "dev": "nodemon --exec yarn build"
+    "dev": "nodemon --exec yarn build",
+        "lint": "eslint src --ext .js,jsx",
+    "prettier": "prettier -c 'src/*.{js,jsx}'"
   },
   "peerDependencies": {
     "history": "^4.10.1",
