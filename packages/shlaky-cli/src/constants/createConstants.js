@@ -1,11 +1,11 @@
 import misc from './misc.constants'
-import crudKeys from './crudKeys.constants'
+import crud from './crud.constants'
 import types from './types.constants'
 import sides from './sides.constants'
 
 const createConstants = () => ({
   misc,
-  crudKeys,
+  crud,
   types,
   sides,
 })

@@ -7,7 +7,7 @@ class Facade extends Base {
   }
 
   setupCrud() {
-    this.constants.crudKeys.ALL.forEach(this.setupCrudKey)
+    this.constants.crud.ALL.forEach(this.setupCrudKey)
   }
 
   setupCrudKey = crudKey => {

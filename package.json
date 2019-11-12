@@ -1,9 +1,9 @@
 {
   "scripts": {
-    "lint": "yarn lerna run lint",
-    "lint-fix": "yarn lerna run lint-fix",
-    "prettier": "yarn lerna run prettier",
-    "prettier-fix": "yarn lerna run prettier",
+    "lint": "yarn lerna run lint --parallel --no-bail",
+    "lint:fix": "yarn lerna run lint:fix --parallel --no-bail",
+    "prettier": "yarn lerna run prettier --parallel --no-bail",
+    "prettier:fix": "yarn lerna run prettier --parallel --no-bail",
     "bootstrap": "yarn lerna bootstrap",
     "e2e": "yarn cypress run"
   },
@@ -30,11 +30,17 @@
     "@babel/plugin-proposal-decorators": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
     "@babel/preset-react": "^7.0.0",
+    "@storybook/addon-actions": "^5.2.5",
+    "@storybook/addon-links": "^5.2.5",
+    "@storybook/addon-storyshots": "^5.2.5",
+    "@storybook/addons": "^5.2.5",
+    "@storybook/react": "^5.2.5",
     "@typescript-eslint/eslint-plugin": "2.x",
     "@typescript-eslint/parser": "2.x",
     "@welldone-software/why-did-you-render": "^3.3.8",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",
+    "babel-plugin-macros": "^2.6.1",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -60,11 +66,23 @@
     "lint-staged": "^9.3.0",
     "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
-    "prettier": "^1.18.2"
+    "nodemon": "^1.19.4",
+    "prettier": "^1.18.2",
+    "react-test-renderer": "^16.11.0",
+    "require-context.macro": "^1.2.2"
   },
   "peerDependencies": {
     "@material-ui/core": "^4.5.1",
     "@material-ui/styles": "^4.5.0",
     "@welldone-software/why-did-you-render": "^3.3.8"
+  },
+  "name": "shlaky",
+  "dependencies": {
+    "shlaky-cli": "file:packages/shlaky-cli",
+    "shlaky-client": "file:packages/shlaky-client",
+    "shlaky-docs": "file:packages/shlaky-docs",
+    "shlaky-functional": "file:packages/shlaky-functional",
+    "shlaky-react-components": "file:packages/shlaky-react-components",
+    "shlaky-server": "file:packages/shlaky-server"
   }
 }

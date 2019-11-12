@@ -3,7 +3,7 @@ const READ = 'read'
 const UPDATE = 'update'
 const DESTROY = 'destroy'
 
-const crudKeysConstants = {
+const crudConstants = {
   CREATE,
   READ,
   UPDATE,
@@ -11,4 +11,4 @@ const crudKeysConstants = {
   ALL: [CREATE, READ, UPDATE, DESTROY],
 }
 
-export default crudKeysConstants
+export default crudConstants

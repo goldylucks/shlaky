@@ -11,7 +11,9 @@
     "build": "babel src --out-dir build --root-mode upward",
     "dev": "nodemon --exec yarn build",
     "lint": "eslint src --ext .js,jsx",
-    "prettier": "prettier -c 'src/*.{js,jsx}'"
+    "lint:fix": "eslint src --ext .js,jsx --fix",
+    "prettier": "prettier -c 'src/*.{js,jsx}'",
+    "prettier:fix": "prettier -c 'src/*.{js,jsx}' --write"
   },
   "license": "GPL-3.0",
   "peerDependencies": {
@@ -22,8 +24,5 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.5",
     "morgan": "^1.9.1"
-  },
-  "devDependencies": {
-    "nodemon": "^1.19.4"
   }
 }

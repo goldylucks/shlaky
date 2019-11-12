@@ -2,13 +2,13 @@ import Service from './Service'
 
 class CrudService extends Service {
   do({ side, key, crudKey, type }) {
-    if (crudKey === this.constants.crudKeys.CREATE) {
+    if (crudKey === this.constants.crud.CREATE) {
       this.create({ side, key, type })
-    } else if (crudKey === this.constants.crudKeys.READ) {
+    } else if (crudKey === this.constants.crud.READ) {
       this.read({ side, key, type })
-    } else if (crudKey === this.constants.crudKeys.UPDATE) {
+    } else if (crudKey === this.constants.crud.UPDATE) {
       this.update({ side, key, type })
-    } else if (crudKey === this.constants.crudKeys.DESTROY) {
+    } else if (crudKey === this.constants.crud.DESTROY) {
       this.destroy({ side, key, type })
     }
   }
@@ -79,7 +79,7 @@ class CrudService extends Service {
 
   update() {
     global.console.log(
-      'If you find a use for this method, please open an issue with it!'
+      'If you find a use for this method, please open an issue with it!',
     )
   }
 

@@ -11,8 +11,10 @@
     "prebuild": "yarn clean",
     "build": "babel src --out-dir build --root-mode upward",
     "dev": "nodemon --exec yarn build",
-        "lint": "eslint src --ext .js,jsx",
-    "prettier": "prettier -c 'src/*.{js,jsx}'"
+    "lint": "eslint src --ext .js,jsx",
+    "lint:fix": "eslint src --ext .js,jsx --fix",
+    "prettier": "prettier -c 'src/*.{js,jsx}'",
+    "prettier:fix": "prettier -c 'src/*.{js,jsx}' --write"
   },
   "peerDependencies": {
     "history": "^4.10.1",

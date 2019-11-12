@@ -21,5 +21,5 @@ export const Message = ({ icon, title, body }) =>
     Div({
       className: 'message',
       children: renderIfs([[icon, Icon], [title, Title], [body, Body]]),
-    })
+    }) // eslint-disable-line
   )
